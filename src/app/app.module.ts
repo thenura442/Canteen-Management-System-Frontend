@@ -6,13 +6,19 @@ import { AppComponent } from './app.component';
 import { VendorComponent } from './vendor/vendor.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { ItemComponent } from './item/item.component';
+import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
+import { CustomerComponent } from './customer/customer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     VendorComponent,
     EmployeeComponent,
-    ItemComponent
+    ItemComponent,
+    LoginComponent,
+    ProfileComponent,
+    CustomerComponent
   ],
   imports: [
     BrowserModule,
