@@ -3,46 +3,61 @@
 
   <div class="portion">
 
-    <form class="search-form" action="">
-      <input class="search" type="text" placeholder="Search Vendor" >
+    <form class="search-form" #search ="ngForm" (ngSubmit)="onFind(search)">
+      <input class="search" type="text" name="search-vendor" placeholder="Search Vendor" required="" [(ngModel)]="body.email">
       <button class="img-btn" type="submit"><img src="./../../assets/icon.svg">  </button>
     </form>
 
-    <form>
+    <div *ngIf="postErrorFind" class="message-failure">
+      {{ postErrorMessageFind +'!'}}
+    </div>
+
+    <div *ngIf="postSuccessFind" class="message-success">
+      {{ postSuccessMessageFind +'!'}}
+    </div>
+
+    <form #form ="ngForm">
       <div class="form-container">
         <div class="form-row">
           <label class="form-label" for="id">Vendor Name:</label>
-          <input class="form-input" style="margin-left: 20px;" type="text" placeholder="Enter Vendor Name"><br>
+          <input class="form-input" style="margin-left: 20px;" name="vendor-name" type="text" placeholder="Enter Vendor Name" required [(ngModel)]="vendorForm.vendor_name"><br>
 
           <label class="form-label" for="id">Email:</label>
-          <input class="form-input" style="margin-left: 76px;" type="text" placeholder="Enter Vendor Email"><br>
+          <input class="form-input" style="margin-left: 76px;" name="vendor-email" type="text" placeholder="Enter Vendor Email" required [(ngModel)]="vendorForm.email"><br>
 
           <label class="form-label" for="id">Picture:</label>
-          <input class="form-input" style="margin-left: 68px;" type="text" placeholder="Upload Vendor Picture"><br>
+          <input class="form-input-file" style="margin-left: 68px;" name="file" type="file" id="fileUpload"><br>
 
 
         </div>
         <div class="form-row">
 
           <label class="form-label" for="id">Mobile:</label>
-          <input class="form-input" style="margin-left: 97px;" type="text" placeholder="Enter Mobile No"><br>
+          <input class="form-input" style="margin-left: 97px;" name="vendor-mobile" type="text" placeholder="Enter Mobile No" required [(ngModel)]="vendorForm.mobile_no"><br>
 
           <label class="form-label" for="id">Description:</label>
-          <input class="form-input" style="margin-left: 65px;" type="text" placeholder="Enter Description"><br>
+          <input class="form-input" style="margin-left: 65px;" name="vendor-description" type="text" placeholder="Enter Description" required [(ngModel)]="vendorForm.description"><br>
 
           <label class="form-label">Access:</label>
-          <select class="form-input" required style="margin-left: 99px;">
+          <select class="form-input" name="vendor-access" style="margin-left: 99px;" required [(ngModel)]="vendorForm.access">
             <option value="" disabled selected hidden>Set Access</option>
             <option value="open">Open</option>
             <option value="blocked">Blocked</option>
           </select>
         </div>
       </div>
+      <div *ngIf="postError" class="message-failure">
+        {{ postErrorMessage +'!'}}
+      </div>
+
+      <div *ngIf="postSuccess" class="message-success">
+        {{ postSuccessMessage +'!'}}
+      </div>
       <div class="buttons-div">
-        <button class="form-button">INSERT VENDOR</button>
-        <button class="form-button disabled">UPDATE VENDOR</button>
-        <button class="form-button disabled">DELETE VENDOR</button>
-        <button class="form-button disabled red">CANCEL</button>
+        <button class="form-button" (click)="onSubmit(form)">INSERT VENDOR</button>
+        <button class="form-button" (click)="onUpdate(form)">UPDATE VENDOR</button>
+        <button class="form-button" (click)="onDelete(form)">DELETE VENDOR</button>
+        <button class="form-button  red">CANCEL</button>
       </div>
     </form>
   </div>

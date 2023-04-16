@@ -79,7 +79,10 @@ img {
   border-radius: 8px;
   width: 100%;
   min-width: 950px;
-  padding-left: 40px;
+}
+
+form {
+  height: fit-content;
 }
 
 
@@ -87,8 +90,7 @@ img {
   width: 50%;
   margin: 50px 10px 100px 10px;
   height: fit-content;
-  text-align: left;
-  padding-left: 5%;
+  text-align: center;
 }
 
 .form-label {
@@ -134,10 +136,11 @@ img {
 .disabled {
   opacity: 0.6;
   pointer-events: none;
+  z-index: 0;
 }
 
 .red {
-  background-color: #EFA5A8;
+  background-color: #ee6a6f;
 }
 
 
@@ -168,4 +171,34 @@ input[type=file]::file-selector-button:hover {
   border: 1px solid #DDE2E8;
   border-radius: 5px;
   width: 50%;
+}
+
+.message-success {
+  margin: 40px 0px 40px 0px;
+  width: 40%;
+  font-size: 18px;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  background-color: #d4edda;
+  height: fit-content;
+  justify-content: center;
+  border: 1px solid #f8d7da;
+  border-radius: 10px;
+  overflow-wrap: anywhere;
+}
+
+.message-failure {
+  margin: 40px 0px 40px 0px;
+  width: 40%;
+  font-size: 18px;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  background-color: #f8d7da;
+  height: fit-content;
+  justify-content: center;
+  border: 1px solid #f8d7da;
+  border-radius: 10px;
+  overflow-wrap: anywhere;
 }

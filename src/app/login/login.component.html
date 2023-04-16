@@ -10,20 +10,24 @@
       <h1 class="h1">Welcome Back!</h1>
     </div>
     <div class="form-container">
-      <form>
-        <input class="form-input" type="text"placeholder="Enter Email">
+      <form #form ="ngForm" (ngSubmit)="onSubmit(form)">
+        <input class="form-input" name='email' type="text"placeholder="Enter Email" required [(ngModel)]="loginForm.email">
 
-        <input class="form-input" type="text" placeholder="Enter Password">
+        <input class="form-input" name='password' type="password" placeholder="Enter Password" required [(ngModel)]="loginForm.password">
 
         <div class="buttons-div">
           <button class="form-button">LOGIN</button>
         </div>
       </form>
 
-      <div class="link">
+      <div class="link" style="margin-bottom: 50px;">
         <a href="#">Forgot Your Password?</a>
       </div>
+    </div>
 
+    <div *ngIf="postError" [hidden]="postError" style="width: 60%; font-size: 18px; padding: 30px; display: flex; align-items: center; background-color: #f8d7da; height: fit-content; justify-content: center; border: 1px solid #f8d7da; border-radius: 10px;">
+    <!-- <div  *ngIf="postError" [hidden]="postError" style="margin: 10px 0px 20px 0px; width: 40%; font-size: 18px; padding: 30px; display: flex; align-items: center; background-color: #f8d7da; height: fit-content; justify-content: center; border: 1px solid #f8d7da; border-radius: 10px; overflow-wrap: anywhere;"></div> -->
+      {{ postErrorMessage +'!'}}
     </div>
   </div>
 </div>

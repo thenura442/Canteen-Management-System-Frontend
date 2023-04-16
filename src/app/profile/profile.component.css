@@ -86,7 +86,6 @@ img {
   border-radius: 8px;
   width: 100%;
   min-width: 950px;
-  padding-left: 40px;
   margin-bottom: 100px;
 }
 
@@ -105,8 +104,12 @@ img {
   width: 50%;
   margin: 50px 10px 70px 10px;
   height: fit-content;
-  text-align: left;
-  padding-left: 5%;
+  text-align: center;
+}
+
+.password-container {
+  display: flex;
+  flex-direction: column;
 }
 
 .form-label {
@@ -166,6 +169,7 @@ form {
 .disabled {
   opacity: 0.6;
   pointer-events: none;
+  z-index: 0;
 }
 
 .red {
