@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Vendor } from 'src/app/_interfaces/vendor';
 
-//const URL = 'http://localhost:5500/';
 const URL = 'http://localhost:5500/';
 const PATH = 'api/vendor/';
 

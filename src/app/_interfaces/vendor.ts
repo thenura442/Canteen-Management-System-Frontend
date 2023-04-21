@@ -2,7 +2,7 @@ export interface Vendor {
   vendor_name: String,
   email: String,
   description: String,
-  url: String,
+  url: any,
   mobile_no: String,
   access: String
 }

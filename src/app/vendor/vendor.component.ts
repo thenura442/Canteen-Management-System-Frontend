@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { AuthService } from '../_services/auth/auth.service';
 import { Vendor } from '../_interfaces/vendor';
 import { VendorService } from '../_services/vendor/vendor.service';
+import { UploadService } from '../_services/upload/upload.service';
 
 @Component({
   selector: 'app-vendor',
@@ -23,8 +24,10 @@ export class VendorComponent implements OnInit {
 
   updateTrue = false;
   type : any;
+  image: any = [];
+  originalImage: any = [];
 
-  constructor(private authService: AuthService, private vendorService: VendorService){}
+  constructor(private authService: AuthService, private vendorService: VendorService, private uploadService: UploadService){}
 
   ngOnInit(){
 
@@ -53,8 +56,12 @@ export class VendorComponent implements OnInit {
    onSubmit(form: NgForm) {
     console.log('in on submit : '+ form.valid);
     if(form.valid && this.vendorForm.access != 'Set Access') {
+      if(this.image[0] == undefined) {
+        this.onHttpError('Please Select an Store Image');
+        return
+      }
       this.messages();
-      this.vendorService.postVendorForm(this.vendorForm).subscribe((result) => {
+      this.vendorService.postVendorForm(this.vendorForm).subscribe((result : any) => {
         console.log(result);
         if(Object.hasOwn(result,'Error')){
           const status = Object.getOwnPropertyDescriptor(result, 'Status');
@@ -73,6 +80,7 @@ export class VendorComponent implements OnInit {
           this.postSuccess = true;
           this.postSuccessMessage = result.email + "- Successfully Registered";
           this.vendorForm = this.originalVendorForm;
+          this.image = this.originalImage;
         }
       });
     }
@@ -97,6 +105,7 @@ export class VendorComponent implements OnInit {
           this.postSuccessFind = false;
         }
         else{
+          this.updateTrue= true;
           this.vendorForm = result;
           this.postErrorFind = false;
           this.postSuccessFind = true;
@@ -132,8 +141,9 @@ export class VendorComponent implements OnInit {
           this.postError = false;
           this.postSuccess = true;
           this.postSuccessMessage = this.body.email + " - Updated Successfully";
-          this.vendorForm = { ...this.originalVendorForm };
-          this.body = this.orginalBody;
+          this.vendorForm = {...this.originalVendorForm}
+          this.body = {...this.orginalBody}
+          this.image = {...this.originalImage}
           this.updateTrue = false;
         }
       });
@@ -164,15 +174,42 @@ export class VendorComponent implements OnInit {
           this.postSuccess = true;
           this.postSuccessMessage = this.vendorForm.email + " - Deleted Successfully!"
           this.vendorForm = {...this.originalVendorForm}
+          this.body = {...this.orginalBody}
+          this.image = {...this.originalImage}
           this.updateTrue = false;
         }
       });
     }
   }
 
+  selectImage(fileInput: any) {
+    this.messages();
+    this.image = fileInput.target.files;
+
+    if(this.image[0] == undefined) {
+      return
+    }
+
+    if(this.image[0] != undefined) {
+      const formData: any = new FormData();
+      formData.append('url',this.image[0])
+      try{
+          this.uploadService.postFiles(formData).subscribe((result: any) => {
+          this.vendorForm.url = result.path;
+        })
+      }
+      catch(e) {
+        console.log(e);
+      }
+    }
+  }
+
   onCancel():void {
     this.vendorForm = {...this.originalVendorForm}
     this.messages();
+    this.updateTrue= false;
+    this.body = {...this.orginalBody}
+    this.image = {...this.originalImage}
   }
 
   messages(): void{

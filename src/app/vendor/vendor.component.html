@@ -3,9 +3,9 @@
 
   <div class="portion">
 
-    <form class="search-form" #search ="ngForm" (ngSubmit)="onFind(search)">
+    <form class="search-form" #search ="ngForm">
       <input class="search" type="text" name="search-vendor" placeholder="Search Vendor" required="" [(ngModel)]="body.email">
-      <button class="img-btn" type="submit"><img src="./../../assets/icon.svg">  </button>
+      <button class="img-btn" (click)="onFind(search)" type="submit"><img src="./../../assets/icon.svg">  </button>
     </form>
 
     <div *ngIf="postErrorFind" class="message-failure">
@@ -16,17 +16,18 @@
       {{ postSuccessMessageFind +'!'}}
     </div>
 
-    <form #form ="ngForm">
+    <form #form ="ngForm" enctype="multipart/form-data">
       <div class="form-container">
         <div class="form-row">
           <label class="form-label" for="id">Vendor Name:</label>
           <input class="form-input" style="margin-left: 20px;" name="vendor-name" type="text" placeholder="Enter Vendor Name" required [(ngModel)]="vendorForm.vendor_name"><br>
 
           <label class="form-label" for="id">Email:</label>
-          <input class="form-input" style="margin-left: 76px;" name="vendor-email" type="text" placeholder="Enter Vendor Email" required [(ngModel)]="vendorForm.email"><br>
+          <input class="form-input" *ngIf="!updateTrue" style="margin-left: 76px;" name="vendor-email" type="text" placeholder="Enter Vendor Email" required [(ngModel)]="vendorForm.email">
+          <input class="form-input" *ngIf="updateTrue" readonly style="margin-left: 76px;" name="vendor-email" type="text" placeholder="Enter Vendor Email" required [(ngModel)]="vendorForm.email"><br>
 
           <label class="form-label" for="id">Picture:</label>
-          <input class="form-input-file" style="margin-left: 68px;" name="file" type="file" id="fileUpload"><br>
+          <input class="form-input-file" style="margin-left: 68px;" name="url" type="file" id="fileUpload" (change)="selectImage($event)">
 
 
         </div>
@@ -54,10 +55,10 @@
         {{ postSuccessMessage +'!'}}
       </div>
       <div class="buttons-div">
-        <button class="form-button" (click)="onSubmit(form)">INSERT VENDOR</button>
-        <button class="form-button" (click)="onUpdate(form)">UPDATE VENDOR</button>
-        <button class="form-button" (click)="onDelete(form)">DELETE VENDOR</button>
-        <button class="form-button  red">CANCEL</button>
+        <button [ngClass]="updateTrue == false ? 'form-button' : 'disabled'" class="form-button" (click)="onSubmit(form)">INSERT VENDOR</button>
+        <button [ngClass]="updateTrue == true ? 'form-button' : 'disabled'" class="form-button" (click)="onUpdate(form)">UPDATE VENDOR</button>
+        <button [ngClass]="updateTrue == true ? 'form-button' : 'disabled'" class="form-button" (click)="onDelete(form)">DELETE VENDOR</button>
+        <button [ngClass]="updateTrue == true ? 'form-button' : 'disabled'" class="form-button  red" (click)="onCancel()">CANCEL</button>
       </div>
     </form>
   </div>
