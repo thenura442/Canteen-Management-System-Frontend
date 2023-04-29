@@ -1,13 +1,16 @@
+<!-- <div class="container" *ngIf="user.email != ''"> -->
 <div class="container">
   <h1 class="header">Profile</h1>
 
   <div class="portion">
     <div class="profile-div">
       <div class="inner-profile-div">
-        <img class="profile-img" src="./../../assets/profile pic.jpg">
+        <img class="profile-img" src="./../../assets/profile pic.jpg" *ngIf="user.url == 'https://canteen-management-system-nsbm.s3.ap-south-1.amazonaws.com/profile+pic.jpg'">
+        <img class="profile-img" [src]="user.url" *ngIf="user.url != 'https://canteen-management-system-nsbm.s3.ap-south-1.amazonaws.com/profile+pic.jpg' ">
       </div>
     </div>
-    <a src="#" class="edit-link">Edit Profile Picture</a>
+    <label for="file_input_id" class="edit-link">Edit Profile Picture</label>
+    <input type="file" id="file_input_id" (change)="selectImage($event)">
 
     <h2 class="sub-header">User Details</h2>
 
@@ -16,62 +19,48 @@
         <div class="form-inner-container">
           <div class="form-row">
             <label class="form-label">First Name:</label>
-            <input class="form-input" required style="margin-left: 40px;" type="text" placeholder="Enter First Name"><br>
+            <input class="form-input" required style="margin-left: 40px;" readonly name="fname" type="text" placeholder="User First Name" [(ngModel)] = "user.first_name"><br>
 
             <label class="form-label">NIC:</label>
-            <input class="form-input" required style="margin-left: 90px;" type="text" placeholder="Enter NIC"><br>
+            <input class="form-input" required style="margin-left: 90px;" readonly type="text" placeholder="User NIC" name="lname" [(ngModel)] = "user.nic" ><br>
 
             <label class="form-label">Email:</label>
-            <input class="form-input" required style="margin-left: 79px;" type="text" placeholder="Enter Email"><br>
+            <input class="form-input" required style="margin-left: 79px;" readonly type="text" placeholder="User Email" name="email" [(ngModel)] = "user.email"><br>
 
             <label class="form-label">Address:</label>
-            <input class="form-input" required style="margin-left: 63px;" type="text" placeholder="Enter Address"><br>
-
-            <label class="form-label">Type:</label>
-            <select class="form-input" required style="margin-left: 87px;">
-              <option value="" disabled selected hidden>Select Type</option>
-              <option value="owner">Owner</option>
-              <option value="employee">Employee</option>
-            </select>
+            <input class="form-input" required style="margin-left: 63px;" readonly type="text" placeholder="User Address" name="address" [(ngModel)] = "user.address" >
 
           </div>
           <div class="form-row">
             <label class="form-label">Last Name:</label>
-            <input class="form-input" required style="margin-left: 40px;" type="text" placeholder="Enter Last Name"><br>
+            <input class="form-input" required style="margin-left: 40px;" readonly type="text" placeholder="Last Name" name="User Lastname" [(ngModel)] = "user.last_name"><br>
 
             <label class="form-label">DOB:</label>
-            <input class="form-input" required style="margin-left: 81px;" type="date"><br>
+            <input class="form-input" required style="margin-left: 81px;" readonly type="text" name="dob" placeholder="User Date Of Birth" [(ngModel)] = "user.dob"><br>
 
             <label class="form-label">Mobile:</label>
-            <input class="form-input" required style="margin-left: 68px;" type="text" placeholder="Enter Mobile Number"><br>
+            <input class="form-input" required style="margin-left: 68px;" readonly type="text" placeholder="User Mobile Number" name="mobile" [(ngModel)] = "user.mobile_no"><br>
 
-            <label class="form-label">Access:</label>
-            <select class="form-input" required style="margin-left: 70px;">
-              <option value="" disabled selected hidden>Set Access</option>
-              <option value="open">Open</option>
-              <option value="blocked">Blocked</option>
-            </select><br>
-
-            <label class="form-label">Vendor:</label>
-            <select class="form-input" required style="margin-left: 70px;">
-              <option value="" disabled selected hidden>Select Vendor</option>
-              <option value="open">Street Food Store</option>
-              <option value="blocked">Indian Store</option>
+            <label class="form-label">Type:</label>
+            <select class="form-input" required style="margin-left: 87px;" readonly name="type" [(ngModel)] = "user.type">
+              <option value="" disabled selected hidden>Select Type</option>
+              <option *ngIf="user.type === 'owner' " value="owner" disabled>Owner</option>
+              <option *ngIf="user.type === 'employee'" value="employee" disabled>Employee</option>
             </select>
 
           </div>
         </div>
-        <div class="form-row" *ngIf="!clicked">
-          <button type="submit" class="form-button">Edit Profile</button>
+        <!-- <div class="form-row" *ngIf="!clicked">
+          <button type="submit" class="form-button" (click)="editprofile()">Edit Profile</button>
         </div>
         <div class="buttons-div" *ngIf="clicked">
           <div class="left">
-            <button class="form-button disabled left">Update Profile</button>
+            <button class="form-button left">Update Profile</button>
           </div>
           <div class="right">
-            <button class="form-button disabled red">Cancel</button>
+            <button class="form-button red">Cancel</button>
           </div>
-        </div>
+        </div> -->
       </div>
     </form>
 
@@ -82,29 +71,44 @@
       <div class="form-container password-container" style="display: flex; flex-direction: column;">
         <div class="form-inner-container">
           <div class="form-row">
-            <label class="form-label">First Name:</label>
-            <input class="form-input" required style="margin-left: 40px;" type="text" placeholder="Enter First Name"><br>
+            <label class="form-label">Old Password:</label>
+            <input class="form-input" *ngIf="!password" required style="margin-left: 40px;" autocomplete="new-password" readonly type="password" placeholder="Enter Previous Password">
+            <input class="form-input" *ngIf="password" required style="margin-left: 40px;" autocomplete="new-password"  type="password" placeholder="Enter Previous Password" name="old" [(ngModel)] = "pass.old_password"><br>
 
-            <label class="form-label">NIC:</label>
-            <input class="form-input" required style="margin-left: 90px;" type="text" placeholder="Enter NIC"><br>
+            <label class="form-label" style="margin-left: 5px;">New Password:</label>
+            <input class="form-input" *ngIf="!password" required style="margin-left: 35px;" autocomplete="new-password" readonly type="password" placeholder="Enter New Password">
+            <input class="form-input" *ngIf="password" required style="margin-left: 35px;" autocomplete="new-password"  type="password" placeholder="Enter New Password" name="new" [(ngModel)] = "pass.new_password"><br>
 
-            <label class="form-label">Email:</label>
-            <input class="form-input" required style="margin-left: 79px;" type="text" placeholder="Enter Email"><br>
+            <label class="form-label" style="margin-left: 5px;">Retype Password:</label>
+            <input class="form-input" *ngIf="!password" required style="margin-left: 20px;" autocomplete="new-password" readonly type="password" placeholder="Retype New Password">
+            <input class="form-input" *ngIf="password" required style="margin-left: 20px;" autocomplete="new-password"  type="password" placeholder="Retype New Password" name="retype_new" [(ngModel)] = "pass.retype_new_password"><br>
 
           </div>
         </div>
-        <div class="form-row" *ngIf="!clicked">
-          <button type="submit" class="form-button">Change Password</button>
+        <div class="form-row" *ngIf="!password">
+          <button type="submit" class="form-button" (click)="editPassword()">Change Password</button>
         </div>
-        <div class="buttons-div" *ngIf="clicked">
+        <div class="buttons-div" *ngIf="password">
           <div class="left">
-            <button class="form-button disabled left">Update Password</button>
+            <button class="form-button left" (click)="update()">Update</button>
           </div>
           <div class="right">
-            <button class="form-button disabled red">Cancel</button>
+            <button class="form-button red" (click)="cancel()">Cancel</button>
           </div>
         </div>
       </div>
     </form>
+
+    <div *ngIf="postError" class="message-failure">
+      {{ postErrorMessage +'!'}}
+    </div>
+
+    <div *ngIf="postSuccess" class="message-success">
+      {{ postSuccessMessage +'!'}}
+    </div>
+
+    <div class="logout">
+      <button class="logout-button" style="margin-bottom: 20px;" (click)="logout()">Logout</button>
+    </div>
   </div>
 </div>

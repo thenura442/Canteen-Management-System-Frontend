@@ -1,0 +1,220 @@
+<div class="container">
+  <h1 class="header">Orders</h1>
+
+  <div class="portion" *ngIf="type =='all'">
+
+    <form class="search-form" action="">
+      <input class="search" type="text" placeholder="Search Order" >
+      <button class="img-btn" type="submit"><img src="./../../assets/icon.svg">  </button>
+    </form>
+
+    <div class="buttons-div">
+      <button class="form-button active-form-button">All</button>
+      <button class="form-button " (click)="pending()">Pending</button>
+      <button class="form-button" (click)="progress()">In Progress</button>
+      <button class="form-button" (click)="pick()">Pick Up</button>
+      <button class="form-button" (click)="completed()">Completed</button>
+    </div>
+
+      <div class="form-container" routerLink="/orders/order">
+        <div class="order_inner">
+          <h2 class="order_header">Street Food Store</h2  >
+          <div class="order_inner_right"><a class="view-order"><img class="img-right" src="./../../assets/Icon button.svg">View Order</a></div>
+        </div>
+
+
+        <div class="order_inner">
+          <h3 class="order_normal">Order No : &nbsp;{{ "#2302063" }}</h3>
+        <p class="color_point"></p><span class="status">{{"Pending"}}</span>
+        </div>
+
+        <div class="order_inner">
+          <h3 class="order_normal">Customer : &nbsp;{{ "Dinil" }}</h3>
+        </div>
+
+        <div class="order_inner">
+          <h3 class="order_normal"><img class="date-time-btn" src="./../../assets/calendar.svg"> : &nbsp;{{ "15 Feb, 2023" }}</h3>
+        </div>
+
+        <div class="order_inner">
+          <h3 class="order_normal"><img class="date-time-btn" src="./../../assets/clock.svg"> : &nbsp;{{ "02.18 PM" }}</h3>
+          <div class="order_inner_right"><img class="order-arrow" src="./../../assets/arrow.svg"></div>
+        </div>
+      </div>
+  </div>
+
+
+
+  <div class="portion" *ngIf="type =='pending'">
+
+    <form class="search-form" action="">
+      <input class="search" type="text" placeholder="Search Order" >
+      <button class="img-btn" type="submit"><img src="./../../assets/icon.svg">  </button>
+    </form>
+
+    <div class="buttons-div">
+      <button class="form-button " (click)="all()">All</button>
+      <button class="form-button active-form-button">Pending</button>
+      <button class="form-button" (click)="progress()">In Progress</button>
+      <button class="form-button" (click)="pick()">Pick Up</button>
+      <button class="form-button" (click)="completed()">Completed</button>
+    </div>
+
+      <div class="form-container" routerLink="/orders/order">
+        <div class="order_inner">
+          <h2 class="order_header">Street Food Store</h2  >
+          <div class="order_inner_right"><a class="view-order"><img class="img-right" src="./../../assets/Icon button.svg">View Order</a></div>
+        </div>
+
+
+        <div class="order_inner">
+          <h3 class="order_normal">Order No : &nbsp;{{ "#2302063" }}</h3>
+        <p class="color_point pending"></p><span class="status">{{"Pending"}}</span>
+        </div>
+
+        <div class="order_inner">
+          <h3 class="order_normal">Customer : &nbsp;{{ "Dinil" }}</h3>
+        </div>
+
+        <div class="order_inner">
+          <h3 class="order_normal"><img class="date-time-btn" src="./../../assets/calendar.svg"> : &nbsp;{{ "15 Feb, 2023" }}</h3>
+        </div>
+
+        <div class="order_inner">
+          <h3 class="order_normal"><img class="date-time-btn" src="./../../assets/clock.svg"> : &nbsp;{{ "02.18 PM" }}</h3>
+          <div class="order_inner_right"><img class="order-arrow" src="./../../assets/arrow.svg"></div>
+        </div>
+      </div>
+  </div>
+
+
+
+  <div class="portion" *ngIf="type =='in progress'">
+
+    <form class="search-form" action="">
+      <input class="search" type="text" placeholder="Search Order" >
+      <button class="img-btn" type="submit"><img src="./../../assets/icon.svg">  </button>
+    </form>
+
+    <div class="buttons-div">
+      <button class="form-button " (click)="all()">All</button>
+      <button class="form-button " (click)="pending()">Pending</button>
+      <button class="form-button active-form-button" >In Progress</button>
+      <button class="form-button" (click)="pick()">Pick Up</button>
+      <button class="form-button" (click)="completed()">Completed</button>
+    </div>
+
+      <div class="form-container" routerLink="/orders/order">
+        <div class="order_inner">
+          <h2 class="order_header">Street Food Store</h2  >
+          <div class="order_inner_right"><a class="view-order"><img class="img-right" src="./../../assets/Icon button.svg">View Order</a></div>
+        </div>
+
+
+        <div class="order_inner">
+          <h3 class="order_normal">Order No : &nbsp;{{ "#2302063" }}</h3>
+        <p class="color_point progress"></p><span class="status">{{"Pending"}}</span>
+        </div>
+
+        <div class="order_inner">
+          <h3 class="order_normal">Customer : &nbsp;{{ "Dinil" }}</h3>
+        </div>
+
+        <div class="order_inner">
+          <h3 class="order_normal"><img class="date-time-btn" src="./../../assets/calendar.svg"> : &nbsp;{{ "15 Feb, 2023" }}</h3>
+        </div>
+
+        <div class="order_inner">
+          <h3 class="order_normal"><img class="date-time-btn" src="./../../assets/clock.svg"> : &nbsp;{{ "02.18 PM" }}</h3>
+          <div class="order_inner_right"><img class="order-arrow" src="./../../assets/arrow.svg"></div>
+        </div>
+      </div>
+  </div>
+
+
+
+  <div class="portion" *ngIf="type =='pick up'">
+
+    <form class="search-form" action="">
+      <input class="search" type="text" placeholder="Search Order" >
+      <button class="img-btn" type="submit"><img src="./../../assets/icon.svg">  </button>
+    </form>
+
+    <div class="buttons-div">
+      <button class="form-button" (click)="all()">All</button>
+      <button class="form-button " (click)="pending()">Pending</button>
+      <button class="form-button" (click)="progress()">In Progress</button>
+      <button class="form-button active-form-button">Pick Up</button>
+      <button class="form-button" (click)="completed()">Completed</button>
+    </div>
+
+      <div class="form-container" routerLink="/orders/order">
+        <div class="order_inner">
+          <h2 class="order_header">Street Food Store</h2  >
+          <div class="order_inner_right"><a class="view-order"><img class="img-right" src="./../../assets/Icon button.svg">View Order</a></div>
+        </div>
+
+
+        <div class="order_inner">
+          <h3 class="order_normal">Order No : &nbsp;{{ "#2302063" }}</h3>
+        <p class="color_point pick"></p><span class="status">{{"Pending"}}</span>
+        </div>
+
+        <div class="order_inner">
+          <h3 class="order_normal">Customer : &nbsp;{{ "Dinil" }}</h3>
+        </div>
+
+        <div class="order_inner">
+          <h3 class="order_normal"><img class="date-time-btn" src="./../../assets/calendar.svg"> : &nbsp;{{ "15 Feb, 2023" }}</h3>
+        </div>
+
+        <div class="order_inner">
+          <h3 class="order_normal"><img class="date-time-btn" src="./../../assets/clock.svg"> : &nbsp;{{ "02.18 PM" }}</h3>
+          <div class="order_inner_right"><img class="order-arrow" src="./../../assets/arrow.svg"></div>
+        </div>
+      </div>
+  </div>
+
+
+  <div class="portion" *ngIf="type =='completed'">
+
+    <form class="search-form" action="">
+      <input class="search" type="text" placeholder="Search Order" >
+      <button class="img-btn" type="submit"><img src="./../../assets/icon.svg">  </button>
+    </form>
+
+    <div class="buttons-div">
+      <button class="form-button" (click)="all()">All</button>
+      <button class="form-button " (click)="pending()">Pending</button>
+      <button class="form-button" (click)="progress()">In Progress</button>
+      <button class="form-button" (click)="pick()">Pick Up</button>
+      <button class="form-button active-form-button">Completed</button>
+    </div>
+
+      <div class="form-container" routerLink="/orders/order">
+        <div class="order_inner">
+          <h2 class="order_header">Street Food Store</h2  >
+          <div class="order_inner_right"><a class="view-order"><img class="img-right" src="./../../assets/Icon button.svg">View Order</a></div>
+        </div>
+
+
+        <div class="order_inner">
+          <h3 class="order_normal">Order No : &nbsp;{{ "#2302063" }}</h3>
+        <p class="color_point completed"></p><span class="status">{{"Pending"}}</span>
+        </div>
+
+        <div class="order_inner">
+          <h3 class="order_normal">Customer : &nbsp;{{ "Dinil" }}</h3>
+        </div>
+
+        <div class="order_inner">
+          <h3 class="order_normal"><img class="date-time-btn" src="./../../assets/calendar.svg"> : &nbsp;{{ "15 Feb, 2023" }}</h3>
+        </div>
+
+        <div class="order_inner">
+          <h3 class="order_normal"><img class="date-time-btn" src="./../../assets/clock.svg"> : &nbsp;{{ "02.18 PM" }}</h3>
+          <div class="order_inner_right"><img class="order-arrow" src="./../../assets/arrow.svg"></div>
+        </div>
+      </div>
+  </div>
+</div>

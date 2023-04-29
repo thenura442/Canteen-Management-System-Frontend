@@ -13,6 +13,10 @@ export class ItemService {
 
   constructor(private http: HttpClient) { }
 
+  findItems(body: any) : any {
+    return this.http.post(URL+PATH+'get', body);
+  }
+
   postVendorForm(itemSettings: Item) : Observable<Item> {
     return this.http.post<Item>(URL+PATH+'register',itemSettings);
   }

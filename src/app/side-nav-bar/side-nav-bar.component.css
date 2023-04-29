@@ -93,6 +93,36 @@
   background-color: #EFEFEF;
 }
 
+/* Router Active */
+
+/* .active.container {
+  color: black;
+  background-color: #EFEFEF;
+  border: 1px solid #EFEFEF;
+}
+
+.active .sidebar-link {
+  color: black;
+  background-color: #EFEFEF;
+  border: 1px solid #EFEFEF;
+}
+
+.active .in{
+  color: black;
+  background-color: #EFEFEF;
+  border: 1px solid #EFEFEF;
+} */
+
+.active a{
+  color: black;
+  /* background-color: #EFEFEF; */
+}
+
+.active svg{
+  color: black;
+  /* background-color: #EFEFEF; */
+}
+
 
 /* SIDEBAR LINK */
 

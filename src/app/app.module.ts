@@ -12,6 +12,12 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CustomerComponent } from './customer/customer.component';
 import { SideNavBarComponent } from './side-nav-bar/side-nav-bar.component';
+import { ItemListComponent } from './item.list/item.list.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { SearchfilterPipe } from './_pipes/searchfilter/searchfilter.pipe';
+import { ClipboardModule } from '@angular/cdk/clipboard';
+import { OrdersComponent } from './orders/orders.component';
+import { OrderPageComponent } from './order-page/order-page.component';
 
 @NgModule({
   declarations: [
@@ -22,13 +28,19 @@ import { SideNavBarComponent } from './side-nav-bar/side-nav-bar.component';
     LoginComponent,
     ProfileComponent,
     CustomerComponent,
-    SideNavBarComponent
+    SideNavBarComponent,
+    ItemListComponent,
+    SearchfilterPipe,
+    OrdersComponent,
+    OrderPageComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    Ng2SearchPipeModule,
+    ClipboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

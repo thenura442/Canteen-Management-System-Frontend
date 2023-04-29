@@ -6,6 +6,8 @@ import { VendorComponent } from './vendor/vendor.component';
 import { CustomerComponent } from './customer/customer.component';
 import { ItemComponent } from './item/item.component';
 import { ProfileComponent } from './profile/profile.component';
+import { OrdersComponent } from './orders/orders.component';
+import { OrderPageComponent } from './order-page/order-page.component';
 
 const routes: Routes = [
   { path: 'login',   component: LoginComponent},
@@ -14,7 +16,9 @@ const routes: Routes = [
   { path: 'customer',   component: CustomerComponent},
   { path: 'item',   component: ItemComponent},
   { path: 'profile',   component: ProfileComponent},
-  { path: '',   redirectTo: '/home', pathMatch: 'full' }
+  { path: 'orders',   component: OrdersComponent},
+  { path: 'orders/order',   component: OrderPageComponent},
+  { path: '',   redirectTo: '', pathMatch: 'full' }
   //{ path: '**', component: PageNotFoundComponent }
 ];
 

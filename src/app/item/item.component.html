@@ -1,12 +1,14 @@
 <div class="container">
   <h1 class="header">Items</h1>
 
-  <div class="portion">
+  <div class="portion" *ngIf="see_form">
 
     <form class="search-form" action="">
       <input class="search" type="text" placeholder="Search Item" >
       <button class="img-btn" type="submit"><img src="./../../assets/icon.svg">  </button>
     </form>
+
+    <h4 class="items_all"><a (click)="seeForm()">See All Items</a></h4>
 
     <form>
       <div class="form-container">
@@ -61,6 +63,43 @@
         <button class="form-button disabled">UPDATE ITEM</button>
         <button class="form-button disabled">DELETE ITEM</button>
         <button class="form-button disabled red">CANCEL</button>
+      </div>
+    </form>
+  </div>
+
+
+  <div class="portion" *ngIf="!see_form">
+
+    <form class="search-form" style="align-items: center;" action="">
+      <input class="search" name="search" [(ngModel)]="filter" type="text" placeholder="Search Item" >
+      <button class="img-btn" type="submit"><img src="./../../assets/icon.svg">  </button>
+    </form>
+
+    <h4 class="items_all"><a (click)="seeForm()">See Form Items</a></h4>
+
+    <form style="height: fit-content;">
+      <div class="form-container">
+        <table style="height: fit-content;">
+          <thead style="height: fit-content;">
+            <tr style="height: fit-content;">
+              <td style="height: fit-content;">item code</td>
+              <td style="height: fit-content;">item name</td>
+            </tr>
+          </thead>
+
+          <tbody style="height: fit-content;">
+            <tr style="height: fit-content;" *ngFor="let item of items | searchfilter:filter">
+              <td style="height: fit-content;" name="text">{{item.id}}</td>
+              <td style="height: fit-content;">{{item.item_name}}</td>
+              <td style="height: fit-content;"><img style="width: 100px; height: auto;" [src]="item.url"></td>
+              <td style="height: fit-content;"><button style="height: 20px;"
+                [cdkCopyToClipboard]="item.id"
+                (cdkCopyToClipboardCopied)="onClipboardCopy($event)"
+              >Copy to clipboard</button>
+            </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </form>
   </div>
