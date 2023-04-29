@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'item',   component: ItemComponent},
   { path: 'profile',   component: ProfileComponent},
   { path: 'orders',   component: OrdersComponent},
-  { path: 'orders/order',   component: OrderPageComponent},
+  { path: 'orders/:id',   component: OrderPageComponent},
   { path: '',   redirectTo: '', pathMatch: 'full' }
   //{ path: '**', component: PageNotFoundComponent }
 ];

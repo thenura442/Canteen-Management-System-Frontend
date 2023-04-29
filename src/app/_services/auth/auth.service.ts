@@ -49,8 +49,9 @@ export class AuthService {
           const email = Object.getOwnPropertyDescriptor(user, 'email');
           const type = Object.getOwnPropertyDescriptor(user, 'type');
           const access = Object.getOwnPropertyDescriptor(user, 'access');
+          const vendor = Object.getOwnPropertyDescriptor(user, 'vendor');
 
-          let body = { email:email?.value , type:type?.value, access:access?.value }
+          let body = { email:email?.value , type:type?.value, access:access?.value , vendor: vendor?.value }
 
           localStorage.setItem("currentData", JSON.stringify(body));
           this.dataSub.next(body);

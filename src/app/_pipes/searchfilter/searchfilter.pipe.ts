@@ -10,7 +10,6 @@ export class SearchfilterPipe implements PipeTransform {
       return items;
     }
 
-    console.log(items)
     return items.filter((items : any) => items.item_name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()));
   }
 

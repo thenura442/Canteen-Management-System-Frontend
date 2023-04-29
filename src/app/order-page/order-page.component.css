@@ -201,12 +201,37 @@ form {
 .color_point {
   width: 10px;
   height: 10px;
-  background: #F6B445;
   flex: none;
   order: 0;
   flex-grow: 0;
   border: 1px solid #F6B445;
   border-radius: 50px;
+  margin-left: 20px;
+}
+
+.pending {
+  background: #F6B445;
+  border: 1px solid #F6B445;
+}
+
+.progress {
+  background: #56BCE8;
+  border: 1px solid #56BCE8;
+}
+
+.pick {
+  background: #B702F6;
+  border: 1px solid #B702F6;
+}
+
+.completed {
+  background: #3CB371;
+  border: 1px solid #3CB371;
+}
+
+.cancel-reject {
+  background: #E8565B;
+  border: 1px solid #E8565B;
 }
 
 
@@ -270,7 +295,7 @@ form {
 }
 
 .status {
-  margin-left: 15px;
+  margin-left: 10px;
   align-items: center;
   justify-content: right;
   height: fit-content;

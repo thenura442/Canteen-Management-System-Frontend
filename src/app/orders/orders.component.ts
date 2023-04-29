@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 
 @Component({
   selector: 'app-orders',
@@ -7,25 +7,51 @@ import { Component } from '@angular/core';
 })
 export class OrdersComponent {
 
-  type = "all";
+  searchedOrderId : string = "";
+
+  allStatus  = true;
+  pendingStatus  = false;
+  progressStatus  = false;
+  pickStatus  = false;
+  completedStatus  = false;
 
   all(){
-    this.type = "all";
+    this.allStatus = true;
+    this.pendingStatus = false;
+    this.progressStatus = false;
+    this.pickStatus = false;
+    this.completedStatus = false;
   }
 
   pending() {
-    this.type = "pending";
+    this.allStatus = false;
+    this.pendingStatus = true;
+    this.progressStatus = false;
+    this.pickStatus = false;
+    this.completedStatus = false;
   }
 
   progress(){
-    this.type = "in progress";
+    this.allStatus = false;
+    this.pendingStatus = false;
+    this.progressStatus = true;
+    this.pickStatus = false;
+    this.completedStatus = false;
   }
 
   pick(){
-    this.type = "pick up";
+    this.allStatus = false;
+    this.pendingStatus = false;
+    this.progressStatus = false;
+    this.pickStatus = true;
+    this.completedStatus = false;
   }
 
   completed(){
-    this.type = "completed";
+    this.allStatus = false;
+    this.pendingStatus = false;
+    this.progressStatus = false;
+    this.pickStatus = false;
+    this.completedStatus = true;
   }
 }

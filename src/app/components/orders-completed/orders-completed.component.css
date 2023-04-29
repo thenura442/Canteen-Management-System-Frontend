@@ -1,0 +1,141 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Order Specifics */
+
+.form-container {
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  border-radius: 8px;
+  width: 100%;
+  min-width: 750px;
+  padding: 30px 30px 30px 30px;
+  margin-bottom: 40px;
+}
+
+.items_all {
+  height: fit-content ;
+  text-align: left;
+  margin-bottom: 40px;
+  margin-left: 10px;
+}
+
+.color_point {
+  width: 10px;
+  height: 10px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  border: 1px solid #F6B445;
+  border-radius: 50px;
+  margin-left: 20px;
+}
+
+.pending {
+  background: #F6B445;
+  border: 1px solid #F6B445;
+}
+
+.progress {
+  background: #56BCE8;
+  border: 1px solid #56BCE8;
+}
+
+.pick {
+  background: #B702F6;
+  border: 1px solid #B702F6;
+}
+
+.completed {
+  background: #3CB371;
+  border: 1px solid #3CB371;
+}
+
+.cancel-reject {
+  background: #E8565B;
+  border: 1px solid #E8565B;
+}
+
+.order_inner {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  height: fit-content;
+  align-items: center;
+  margin: 3px 0px;
+}
+
+.order_header {
+  width: fit-content;
+  min-width: 30%;
+  height: 30px;
+  text-align: left;
+  font-family: 'DM Sans';
+  font-style: normal;
+  line-height: 30px;
+  color: #000000;
+}
+
+.order_normal {
+  width: fit-content;
+  min-width: 12%;
+  height: 30px;
+  text-align: left;
+  margin-right : 10px;
+
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: medium;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  color: #727272;
+}
+
+.order_inner_right {
+  display: flex;
+  width: 100%;
+  margin-left: 15px;
+  align-items: center;
+  justify-content: right;
+  height: fit-content;
+}
+
+.view-order {
+  height: fit-content;
+  min-width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+
+.img-right {
+  height: 40px;
+  width: auto;
+  margin-right: 5%;
+}
+
+.status {
+  margin-left: 10px;
+  align-items: center;
+  justify-content: right;
+  height: fit-content;
+}
+
+.date-time-btn {
+  height: 18px;
+  width: auto;
+  margin-right: 2%;
+}
+
+.order-arrow {
+  cursor: pointer;
+  height: 18px;
+  width: auto;
+}

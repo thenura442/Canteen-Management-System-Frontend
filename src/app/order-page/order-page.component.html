@@ -4,30 +4,45 @@
   <div class="portion">
       <div class="form-container">
         <div class="order_inner">
-          <h2 class="order_header">Street Food Store</h2>
+          <h2 class="order_header">{{vendor.vendor_name}}</h2>
           <div class="order_inner_right"><a class="view-order"><img class="img-right" src="./../../assets/Icon button.svg">View Order</a></div>
         </div>
 
 
         <div class="order_inner">
-          <h3 class="order_normal">Order No : &nbsp;{{ "#2302063" }}</h3>
-        <p class="color_point"></p><span class="status">{{"Pending"}}</span>
+          <h3 class="order_normal">Order No : &nbsp;{{ order.id }}</h3>
+          <p *ngIf="order.status === 'pending'" class="color_point pending"></p>
+          <p *ngIf="order.status === 'in progress'" class="color_point progress"></p>
+          <p *ngIf="order.status === 'pick up'" class="color_point pick"></p>
+          <p *ngIf="order.status === 'completed'" class="color_point completed"></p>
+          <p *ngIf="order.status === 'rejected'  || order.status === 'cancelled'" class="color_point cancel-reject"></p>
+          <span class="status">{{ order.status | titlecase}}</span>
         </div>
 
         <div class="order_inner">
-          <h3 class="order_normal">Customer : &nbsp;{{ "Dinil" }}</h3>
+          <h3 class="order_normal">Customer : &nbsp;{{ customer.first_name }}</h3>
         </div>
 
         <div class="order_inner">
-          <h3 class="order_normal"><img class="date-time-btn" src="./../../assets/calendar.svg"> : &nbsp;{{ "15 Feb, 2023" }}</h3>
+          <h3 class="order_normal"><img class="date-time-btn" src="./../../assets/calendar.svg"> : &nbsp;{{ order.date }}</h3>
         </div>
 
         <div class="order_inner">
-          <h3 class="order_normal"><img class="date-time-btn" src="./../../assets/clock.svg"> : &nbsp;{{ "02.18 PM" }}</h3>
+          <h3 class="order_normal"><img class="date-time-btn" src="./../../assets/clock.svg"> : &nbsp;{{ order.time }}</h3>
         </div>
 
-        <div class="buttons-div">
+        <div class="buttons-div" *ngIf="order.status === 'pending'">
           <button class="form-button">Accept Order</button>
+          <div class="order_inner_right"><img class="order-arrow" src="./../../assets/arrow.svg"></div>
+        </div>
+
+        <div class="buttons-div" *ngIf="order.status === 'in progress'">
+          <button class="form-button" style="background-color: #B702F6;">Notify Pick Up</button>
+          <div class="order_inner_right"><img class="order-arrow" src="./../../assets/arrow.svg"></div>
+        </div>
+
+        <div class="buttons-div" *ngIf="order.status === 'pick up'">
+          <button class="form-button" style="background-color: #3CB371;">Order Completed</button>
           <div class="order_inner_right"><img class="order-arrow" src="./../../assets/arrow.svg"></div>
         </div>
       </div>
@@ -43,66 +58,17 @@
 
           <div class="items" style="margin-top: 70px;">
 
-            <div class="item-row">
+            <div class="item-row"  *ngFor="let item of order.products">
               <div class="item-row-left">
-                <img class="img-left" src="./../../assets/pic.jpg">
-                <h3 class="item-left"> Chicken Burger</h3>
+                <img class="img-left" [src]="item.url">
+                <h3 class="item-left"> {{item.item_name}}</h3>
               </div>
               <div class="item-row-right">
-                <h3 class="item-left"> 750.00</h3>
-                <h3 class="item-left"> 2</h3>
-                <h3 class="item-left"> 1500.00</h3>
+                <h3 class="item-left">{{item.price}}</h3>
+                <h3 class="item-left"> {{item.quantity}}</h3>
+                <h3 class="item-left">  {{item.product_total}}</h3>
               </div>
             </div>
-
-            <div class="item-row">
-              <div class="item-row-left">
-                <img class="img-left" src="./../../assets/pic.jpg">
-                <h3 class="item-left"> Chicken Burger</h3>
-              </div>
-              <div class="item-row-right">
-                <h3 class="item-left"> 750.00</h3>
-                <h3 class="item-left"> 2</h3>
-                <h3 class="item-left"> 1500.00</h3>
-              </div>
-            </div>
-
-            <div class="item-row">
-              <div class="item-row-left">
-                <img class="img-left" src="./../../assets/pic.jpg">
-                <h3 class="item-left"> Chicken Burger</h3>
-              </div>
-              <div class="item-row-right">
-                <h3 class="item-left"> 750.00</h3>
-                <h3 class="item-left"> 2</h3>
-                <h3 class="item-left"> 1500.00</h3>
-              </div>
-            </div>
-
-            <div class="item-row">
-              <div class="item-row-left">
-                <img class="img-left" src="./../../assets/pic.jpg">
-                <h3 class="item-left"> Chicken Burger</h3>
-              </div>
-              <div class="item-row-right">
-                <h3 class="item-left"> 750.00</h3>
-                <h3 class="item-left"> 2</h3>
-                <h3 class="item-left"> 1500.00</h3>
-              </div>
-            </div>
-
-            <div class="item-row">
-              <div class="item-row-left">
-                <img class="img-left" src="./../../assets/pic.jpg">
-                <h3 class="item-left"> Chicken Burger</h3>
-              </div>
-              <div class="item-row-right">
-                <h3 class="item-left"> 750.00</h3>
-                <h3 class="item-left"> 2</h3>
-                <h3 class="item-left"> 1500.00</h3>
-              </div>
-            </div>
-
           </div>
 
           <div class="details">
@@ -112,9 +78,9 @@
               <h3 class="item-price-tags"> Total : </h3>
             </div>
             <div class="details-inner">
-              <h3 class="item-price-value "> 3000.00</h3>
-              <h3 class="item-price-value"> 00.00</h3>
-              <h3 class="item-price-value "> 3000.00</h3>
+              <h3 class="item-price-value "> {{order.sub_total}}</h3>
+              <h3 class="item-price-value"> {{order.discount}}</h3>
+              <h3 class="item-price-value "> {{order.total}}</h3>
             </div>
           </div>
         </div>
@@ -128,20 +94,19 @@
             <div class="item-row">
               <div class="profile-div">
                 <div class="inner-profile-div">
-                  <!-- <img class="profile-img" src="./../../assets/profile pic.jpg" *ngIf="user.url == 'https://canteen-management-system-nsbm.s3.ap-south-1.amazonaws.com/profile+pic.jpg'">
-                  <img class="profile-img" [src]="user.url" *ngIf="user.url != 'https://canteen-management-system-nsbm.s3.ap-south-1.amazonaws.com/profile+pic.jpg' "> -->
-                  <img class="profile-img" src="./../../assets/profile pic.jpg">
+                  <img class="profile-img" *ngIf="customer.url === ''" src="./../../assets/profile pic.jpg">
+                  <img class="profile-img" [src]="customer.url">
                 </div>
-                <h3 class="item-customer" style="margin-left: 20px;"> Dinil</h3>
+                <h3 class="item-customer" style="margin-left: 20px;">{{customer.first_name}}</h3>
               </div>
             </div>
             <div class="item-column">
               <h3 class="item-customer"> Email Address</h3>
-              <h3 class="item-customer-value"> Dinil@gmail.com</h3>
+              <h3 class="item-customer-value">{{ customer.email}}</h3>
             </div>
             <div class="item-column">
               <h3 class="item-customer"> Mobile Number</h3>
-              <h3 class="item-customer-value"> 0783323251</h3>
+              <h3 class="item-customer-value"> {{customer.mobile_no}}</h3>
             </div>
             <div class="item-column">
               <h3 class="item-customer"> Type</h3>
@@ -162,8 +127,9 @@
         <form class="form-reject">
           <select class="form-input" name="reject_reason" required>
             <option value="" disabled selected hidden>Select Reason</option>
-            <option value="open">Open</option>
-            <option value="blocked">Blocked</option>
+            <option value="open">Closing Soon</option>
+            <option value="blocked">Lacking Ingredients or Items</option>
+            <option value="blocked">N/A</option>
           </select>
         </form>
 

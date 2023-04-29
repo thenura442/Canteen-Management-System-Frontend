@@ -18,7 +18,13 @@ import { SearchfilterPipe } from './_pipes/searchfilter/searchfilter.pipe';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderPageComponent } from './order-page/order-page.component';
-
+import { OrdersAllComponent } from './components/orders-all/orders-all.component';
+import { OrdersPendingComponent } from './components/orders-pending/orders-pending.component';
+import { OrdersProgressComponent } from './components/orders-progress/orders-progress.component';
+import { OrdersPickComponent } from './components/orders-pick/orders-pick.component';
+import { OrdersCompletedComponent } from './components/orders-completed/orders-completed.component';
+import { OrderfilterPipe } from './_pipes/orderfilter/orderfilter.pipe';
+import { ItemsAllComponent } from './components/items-all/items-all.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +39,13 @@ import { OrderPageComponent } from './order-page/order-page.component';
     SearchfilterPipe,
     OrdersComponent,
     OrderPageComponent,
+    OrdersAllComponent,
+    OrdersPendingComponent,
+    OrdersProgressComponent,
+    OrdersPickComponent,
+    OrdersCompletedComponent,
+    OrderfilterPipe,
+    ItemsAllComponent,
   ],
   imports: [
     BrowserModule,
