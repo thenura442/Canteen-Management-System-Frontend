@@ -16,6 +16,7 @@ export class OrdersComponent {
   completedStatus  = false;
 
   all(){
+    this.searchedOrderId = "";
     this.allStatus = true;
     this.pendingStatus = false;
     this.progressStatus = false;
@@ -24,6 +25,7 @@ export class OrdersComponent {
   }
 
   pending() {
+    this.searchedOrderId = "";
     this.allStatus = false;
     this.pendingStatus = true;
     this.progressStatus = false;
@@ -32,6 +34,7 @@ export class OrdersComponent {
   }
 
   progress(){
+    this.searchedOrderId = "";
     this.allStatus = false;
     this.pendingStatus = false;
     this.progressStatus = true;
@@ -40,6 +43,7 @@ export class OrdersComponent {
   }
 
   pick(){
+    this.searchedOrderId = "";
     this.allStatus = false;
     this.pendingStatus = false;
     this.progressStatus = false;
@@ -48,6 +52,7 @@ export class OrdersComponent {
   }
 
   completed(){
+    this.searchedOrderId = "";
     this.allStatus = false;
     this.pendingStatus = false;
     this.progressStatus = false;

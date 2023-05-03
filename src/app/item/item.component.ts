@@ -12,7 +12,7 @@ export class ItemComponent implements OnInit{
 
 
 
-  see_form: boolean = true;
+  see_form: boolean = false;
   items: any = [];
   filter : any = "";
 

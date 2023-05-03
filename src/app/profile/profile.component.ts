@@ -116,6 +116,7 @@ export class ProfileComponent implements OnInit {
       try{
           this.uploadService.postFiles(formData).subscribe((result: any) => {
           console.log(result.path);
+          console.log('hello')
           this.path = result.path;
           this.userService.updatePicture({email : this.user.email, url : this.path}).subscribe((pic:any) => {
             console.log(pic);
@@ -151,7 +152,7 @@ export class ProfileComponent implements OnInit {
   logout(){
     this.authService.logOut().subscribe((logout: any) => {
       console.log(logout);
-      //this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('/login');
     })
   }
 

@@ -16,6 +16,7 @@ export class OrderPageComponent {
   progressArray : any = [];
   order: any = [];
   customer: any = [];
+  order_id: any = "";
 
   orginalVendor : Vendor = {
     vendor_name: "",
@@ -34,6 +35,7 @@ export class OrderPageComponent {
     let customer_email;
 
     this.activatedRoute.params.subscribe(parameter => {
+      this.order_id = parameter['id'];
       order_id = parameter['id']
     })
 
@@ -50,6 +52,40 @@ export class OrderPageComponent {
       this.customerService.getCustomerId({ email : customer_email}).subscribe(customer => {
         this.customer = customer;
       })
+    })
+  }
+
+  acceptStatus(){
+    this.orderService.updateStatus({id: this.order_id , status : "in progress"}).subscribe(order => {
+      console.log(order);
+      this.reload();
+    })
+  }
+
+  pickStatus(){
+    this.orderService.updateStatus({id: this.order_id , status : "pick up"}).subscribe(order => {
+      console.log(order);
+      this.reload();
+    })
+  }
+
+  completeStatus(){
+    this.orderService.updateStatus({id: this.order_id , status : "completed"}).subscribe(order => {
+      console.log(order);
+      this.reload();
+    })
+  }
+
+  rejectStatus(){
+    this.orderService.updateStatus({id: this.order_id , status : "rejected"}).subscribe(order => {
+      console.log(order);
+      this.reload();
+    })
+  }
+
+  reload(){
+    this.orderService.getById({id: this.order_id}).subscribe(result => {
+      this.order = result;
     })
   }
 }

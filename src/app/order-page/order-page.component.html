@@ -32,17 +32,17 @@
         </div>
 
         <div class="buttons-div" *ngIf="order.status === 'pending'">
-          <button class="form-button">Accept Order</button>
+          <button class="form-button" (click)="acceptStatus()">Accept Order</button>
           <div class="order_inner_right"><img class="order-arrow" src="./../../assets/arrow.svg"></div>
         </div>
 
         <div class="buttons-div" *ngIf="order.status === 'in progress'">
-          <button class="form-button" style="background-color: #B702F6;">Notify Pick Up</button>
+          <button class="form-button" style="background-color: #B702F6;" (click)="pickStatus()">Notify Pick Up</button>
           <div class="order_inner_right"><img class="order-arrow" src="./../../assets/arrow.svg"></div>
         </div>
 
         <div class="buttons-div" *ngIf="order.status === 'pick up'">
-          <button class="form-button" style="background-color: #3CB371;">Order Completed</button>
+          <button class="form-button" style="background-color: #3CB371;" (click)="completeStatus()">Order Completed</button>
           <div class="order_inner_right"><img class="order-arrow" src="./../../assets/arrow.svg"></div>
         </div>
       </div>

@@ -8,9 +8,11 @@ import { ItemComponent } from './item/item.component';
 import { ProfileComponent } from './profile/profile.component';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderPageComponent } from './order-page/order-page.component';
+import { AppComponent } from './app.component';
 
 const routes: Routes = [
   { path: 'login',   component: LoginComponent},
+  { path: 'home', component: AppComponent},
   { path: 'employee',   component: EmployeeComponent},
   { path: 'vendor',   component: VendorComponent},
   { path: 'customer',   component: CustomerComponent},

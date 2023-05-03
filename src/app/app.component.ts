@@ -12,9 +12,10 @@ export class AppComponent implements OnInit {
   isUser = false;
   user: any ;
 
-  constructor(private authService:AuthService){}
+  constructor(public authService:AuthService){}
 
   ngOnInit(){
+    this.isUser = false;
     this.authService.currentData.subscribe(dataSub => {
       let user = dataSub;
       this.user = dataSub;

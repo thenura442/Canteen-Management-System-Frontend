@@ -20,4 +20,8 @@ export class OrderService {
     return this.http.post<any>(URL+PATH+'get/id', id)
   }
 
+  updateStatus(status : any) {
+    return this.http.post<any>(URL+PATH+'update/status', status)
+  }
+
 }
