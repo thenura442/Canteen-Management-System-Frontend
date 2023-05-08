@@ -4,8 +4,8 @@ export interface Item {
   vendor: String,
   description: String,
   url: String,
+  meal_type: String,
   type: String,
-  portion: String,
   price: String,
   availability: String
 }

@@ -1,30 +1,39 @@
 <div class="container">
+  <app-profile-header></app-profile-header>
   <h1 class="header">Employees</h1>
 
   <div class="portion">
 
-    <form class="search-form" action="">
-      <input class="search" type="text" placeholder="Search Employee" >
-      <button class="img-btn" type="submit"><img src="./../../assets/icon.svg">  </button>
+    <form class="search-form" #search="ngForm">
+      <input class="search" type="text" placeholder="Search Employee" name="employee-search"  required [(ngModel)]="body.email">
+      <button class="img-btn" (click)="onFind(search)" type="submit"><img src="./../../assets/icon.svg">  </button>
     </form>
 
-    <form>
+    <div *ngIf="postErrorFind" class="message-failure">
+      {{ postErrorMessageFind +'!'}}
+    </div>
+
+    <div *ngIf="postSuccessFind" class="message-success">
+      {{ postSuccessMessageFind +'!'}}
+    </div>
+
+    <form #form="ngForm">
       <div class="form-container">
         <div class="form-row">
           <label class="form-label">First Name:</label>
-          <input class="form-input" required style="margin-left: 100px;" type="text" placeholder="Enter First Name"><br>
+          <input class="form-input" required style="margin-left: 100px;" type="text" placeholder="Enter First Name" name="first-name" required [(ngModel)]="employeeForm.first_name"><br>
 
           <label class="form-label">NIC:</label>
-          <input class="form-input" required style="margin-left: 150px;" type="text" placeholder="Enter NIC"><br>
+          <input class="form-input" required style="margin-left: 150px;" type="text" placeholder="Enter NIC" name="nic" required [(ngModel)]="employeeForm.nic"><br>
 
           <label class="form-label">Email:</label>
-          <input class="form-input" required style="margin-left: 139px;" type="text" placeholder="Enter Email"><br>
+          <input class="form-input" required style="margin-left: 139px;" type="text" placeholder="Enter Email" name="email" required [(ngModel)]="employeeForm.email"><br>
 
           <label class="form-label">Address:</label>
-          <input class="form-input" required style="margin-left: 123px;" type="text" placeholder="Enter Address"><br>
+          <input class="form-input" required style="margin-left: 123px;" type="text" placeholder="Enter Address" name="address required" [(ngModel)]="employeeForm.address"><br>
 
           <label class="form-label">Type:</label>
-          <select class="form-input" required style="margin-left: 147px;">
+          <select class="form-input" required style="margin-left: 147px;" name="type" required [(ngModel)]="employeeForm.type">
             <option value="" disabled selected hidden>Select Type</option>
             <option *ngIf="type=='admin'" value="owner">Owner</option>
             <option value="employee">Employee</option>
@@ -33,35 +42,43 @@
         </div>
         <div class="form-row">
           <label class="form-label">Last Name:</label>
-          <input class="form-input" required style="margin-left: 100px;" type="text" placeholder="Enter Last Name"><br>
+          <input class="form-input" required style="margin-left: 100px;" type="text" placeholder="Enter Last Name" name="last_name" required [(ngModel)]="employeeForm.last_name"><br>
 
           <label class="form-label">DOB:</label>
-          <input class="form-input" required style="margin-left: 141px;" type="date"><br>
+          <input class="form-input" required style="margin-left: 141px;" type="date" name="date" required [(ngModel)]="employeeForm.dob"><br>
 
           <label class="form-label">Mobile:</label>
-          <input class="form-input" required style="margin-left: 128px;" type="text" placeholder="Enter Mobile Number"><br>
+          <input class="form-input" required style="margin-left: 128px;" type="text" placeholder="Enter Mobile Number" name="mobile" required [(ngModel)]="employeeForm.mobile_no"><br>
 
           <label class="form-label">Access:</label>
-          <select class="form-input" required style="margin-left: 130px;">
+          <select class="form-input" required style="margin-left: 130px;" name="access" required [(ngModel)]="employeeForm.access">
             <option value="" disabled selected hidden>Set Access</option>
             <option value="open">Open</option>
             <option value="blocked">Blocked</option>
           </select><br>
 
           <label class="form-label">Vendor:</label>
-          <select class="form-input" required style="margin-left: 130px;">
+          <select class="form-input" required style="margin-left: 130px;" name="vendor" required [(ngModel)]="employeeForm.vendor">
             <option value="" disabled selected hidden>Select Vendor</option>
-            <option value="open">Street Food Store</option>
-            <option value="blocked">Indian Store</option>
-          </select>
+            <option [value]="vendor.email" *ngFor="let vendor of vendorForm">{{vendor.vendor_name}}</option>
+          </select><br>
 
         </div>
       </div>
+
+      <div *ngIf="postError" class="message-failure">
+        {{ postErrorMessage +'!'}}
+      </div>
+
+      <div *ngIf="postSuccess" class="message-success">
+        {{ postSuccessMessage +'!'}}
+      </div>
+
       <div class="buttons-div">
-        <button type="submit" class="form-button">INSERT EMPLOYEE</button>
-        <button class="form-button disabled">UPDATE EMPLOYEE</button>
-        <button class="form-button disabled">DELETE EMPLOYEE</button>
-        <button class="form-button disabled red">CANCEL</button>
+        <button [ngClass]="updateTrue == false ? 'form-button' : 'disabled'" class="form-button" (click)="onSubmit(form)">INSERT EMPLOYEE</button>
+        <button [ngClass]="updateTrue == true ? 'form-button' : 'disabled'" class="form-button" (click)="onUpdate(form)">UPDATE EMPLOYEE</button>
+        <button [ngClass]="updateTrue == true ? 'form-button' : 'disabled'" class="form-button" (click)="onDelete(form)">DELETE EMPLOYEE</button>
+        <button [ngClass]="updateTrue == true ? 'form-button' : 'disabled'" class="form-button red" (click)="onCancel()">CANCEL</button>
       </div>
     </form>
   </div>

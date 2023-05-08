@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="700pt" fill="#1c74da" height="700pt" version="1.1" viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <g>
+  <path d="m30.699 281.07 277.88-277.88 69.473 69.469-162.08 162.08h446.99v98.246h-441.41l156.5 156.5-69.473 69.469z"/>
+  <use x="30.703125" y="707.367188" xlink:href="#k"/>
+  <use x="66.753906" y="707.367188" xlink:href="#c"/>
+  <use x="90.976562" y="707.367188" xlink:href="#b"/>
+  <use x="124.292969" y="707.367188" xlink:href="#a"/>
+  <use x="157.441406" y="707.367188" xlink:href="#h"/>
+  <use x="180.925781" y="707.367188" xlink:href="#b"/>
+  <use x="214.242188" y="707.367188" xlink:href="#g"/>
+  <use x="266.503906" y="707.367188" xlink:href="#f"/>
+  <use x="301.667969" y="707.367188" xlink:href="#e"/>
+  <use x="350.792969" y="707.367188" xlink:href="#d"/>
+  <use x="388.855469" y="707.367188" xlink:href="#j"/>
+  <use x="423.828125" y="707.367188" xlink:href="#i"/>
+  <use x="475.015625" y="707.367188" xlink:href="#a"/>
+  <use x="508.160156" y="707.367188" xlink:href="#c"/>
+ </g>
+</svg>

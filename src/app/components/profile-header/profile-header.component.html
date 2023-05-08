@@ -1,0 +1,19 @@
+<div class="profile-div">
+  <div class="inner-logout-div">
+    <div class="container-div" style=" margin-right: 50px;" *ngIf="router.url == '/profile' || router.url == ''" (click)="backNav()">
+      <img class="back-img" style="margin-right: 15px;" src="../../../assets/back.svg">
+      <h3 class="logout-btn" style="color: #1c74da;">Back</h3>
+    </div>
+    <div class="container-div" *ngIf="router.url !== '/profile'">
+      <h3 class="account-info">{{user.first_name +' '+ user.last_name}}</h3>
+    </div>
+    <div class="container-div" *ngIf="router.url == '/profile'" (click)="logout()">
+      <h3 class="logout-btn">Logout</h3>
+      <img class="img" src="../../../assets/logout.svg">
+    </div>
+  </div>
+  <div class="inner-profile-div" routerLink="/profile">
+    <img class="profile-img" *ngIf="user.url === ''" src="./../../assets/profile pic.jpg">
+    <img class="profile-img" [src]="user.url">
+  </div>
+</div>

@@ -1,76 +1,92 @@
 <div class="container">
+  <app-profile-header></app-profile-header>
   <h1 class="header">Items</h1>
 
   <div class="portion" *ngIf="see_form">
 
     <div class="search-row">
-      <form class="search-form" action="">
-        <input class="search" type="text" placeholder="Search Item Code" >
-        <button class="img-btn" type="submit"><img src="./../../assets/icon.svg">  </button>
+      <form class="search-form" #search ="ngForm">
+        <input class="search" type="text" name="search-item" placeholder="Search Item Code" required [(ngModel)]="body.id" >
+        <button class="img-btn" (click)="onFind(search)" type="submit"><img src="./../../assets/icon.svg">  </button>
       </form>
 
       <h4 class="items_all"><a (click)="seeForm()">View All Items</a></h4>
     </div>
 
-    <form>
+    <div *ngIf="postErrorFind" class="message-failure">
+      {{ postErrorMessageFind +'!'}}
+    </div>
+
+    <div *ngIf="postSuccessFind" class="message-success">
+      {{ postSuccessMessageFind +'!'}}
+    </div>
+
+    <form #form ="ngForm" enctype="multipart/form-data">
       <div class="form-container">
         <div class="form-row">
           <label class="form-label" for="id">Item Name:</label>
-          <input class="form-input" style="margin-left: 66px;" type="text" placeholder="Enter Item Name"><br>
+          <input class="form-input" style="margin-left: 66px;" required type="text" name="item_name" placeholder="Enter Item Name" [(ngModel)]="itemForm.item_name"><br>
 
           <label class="form-label" for="id">Description:</label>
-          <input class="form-input" style="margin-left: 62px;" type="text" placeholder="Enter Description"><br>
+          <input class="form-input" style="margin-left: 62px;" required type="text"  name="item_description" placeholder="Enter Description" [(ngModel)]="itemForm.description"><br>
 
           <label class="form-label" for="id">Price:</label>
-          <input class="form-input" style="margin-left: 110px;" type="text" placeholder="Enter Price"><br>
+          <input class="form-input" style="margin-left: 105px;" required type="text"  name="item_price" placeholder="Enter Price" [(ngModel)]="itemForm.price"><br>
 
-          <label class="form-label" for="id">Type:</label>
-          <select class="form-input" required style="margin-left: 110px;">
+          <label class="form-label" for="id">Meal Type:</label>
+          <select class="form-input" required style="margin-left: 63px;" name="item_meal_type" [(ngModel)]="itemForm.meal_type">
             <option value="" disabled selected hidden>Select Type</option>
-            <option value="open">Snack</option>
-            <option value="blocked">Main</option>
-            <option value="blocked">Beverage</option>
-            <option value="blocked">Dessert</option>
+            <option value="starter">Starter</option>
+            <option value="main">Main</option>
+            <option value="dessert">Dessert</option>
+            <option value="snack">Snack</option>
+            <option value="beverage">Beverage</option>
           </select><br>
         </div>
         <div class="form-row">
 
           <label class="form-label">Vendor:</label>
-          <select class="form-input" required style="margin-left: 128px;">
+          <select class="form-input" required style="margin-left: 132px;" name="item_vendor" [(ngModel)]="itemForm.vendor">
             <option value="" disabled selected hidden>Select Vendor</option>
-            <option value="open">Street Food Store</option>
-            <option value="blocked">Indian Store</option>
+            <option [value]="vendor.email" *ngFor="let vendor of vendorForm">{{vendor.vendor_name}}</option>
           </select><br>
 
           <label class="form-label" for="id">Picture:</label>
-          <input class="form-input-file" style="margin-left: 130px;" type="file" id="fileUpload"><br>
+          <input class="form-input-file" style="margin-left: 130px;" required type="file" id="fileUpload" (change)="selectImage($event)"><br>
 
-          <label class="form-label">Portion:</label>
-          <select class="form-input" required style="margin-left: 129px;">
-            <option value="" disabled selected hidden>Select Portion</option>
-            <option value="open">Half Portion</option>
-            <option value="blocked">Full Portion</option>
+          <label class="form-label">Type:</label>
+          <select class="form-input" required style="margin-left: 140px;" name="item_type" [(ngModel)]="itemForm.type">
+            <option value="" disabled selected hidden>Select Type</option>
+            <option value="item">Item</option>
+            <option value="special">Special Item</option>
           </select><br>
 
           <label class="form-label">Availability:</label>
-          <select class="form-input" required style="margin-left: 98px;">
+          <select class="form-input" required style="margin-left: 89px;" name="item_availability" [(ngModel)]="itemForm.availability">
             <option value="" disabled selected hidden>Set Availability</option>
-            <option value="open">Available</option>
-            <option value="blocked">Unavailable</option>
+            <option value="available">Available</option>
+            <option value="unavailable">Unavailable</option>
           </select>
         </div>
       </div>
+      <div *ngIf="postError" class="message-failure">
+        {{ postErrorMessage +'!'}}
+      </div>
+
+      <div *ngIf="postSuccess" class="message-success">
+        {{ postSuccessMessage +'!'}}
+      </div>
       <div class="buttons-div">
-        <button class="form-button">INSERT ITEM</button>
-        <button class="form-button disabled">UPDATE ITEM</button>
-        <button class="form-button disabled">DELETE ITEM</button>
-        <button class="form-button disabled red">CANCEL</button>
+        <button [ngClass]="updateTrue == false ? 'form-button' : 'disabled'" class="form-button" (click)="onSubmit(form)">INSERT ITEM</button>
+        <button [ngClass]="updateTrue == true ? 'form-button' : 'disabled'" class="form-button" (click)="onUpdate(form)">UPDATE ITEM</button>
+        <button [ngClass]="updateTrue == true ? 'form-button' : 'disabled'" class="form-button" (click)="onDelete(form)">DELETE ITEM</button>
+        <button [ngClass]="updateTrue == true ? 'form-button' : 'disabled'" class="form-button red" (click)="onCancel()">CANCEL</button>
       </div>
     </form>
   </div>
 
 
-  <div class="portion" *ngIf="!see_form">
+  <!-- <div class="portion" *ngIf="!see_form">
 
     <div class="search-row">
       <form class="search-form" action="">
@@ -119,5 +135,5 @@
         </table>
       </div>
     </form>
-  </div>
+  </div> -->
 </div>

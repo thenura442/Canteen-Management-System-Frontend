@@ -1,10 +1,11 @@
 <div class="container">
+  <app-profile-header></app-profile-header>
   <h1 class="header">Vendors</h1>
 
   <div class="portion">
 
     <form class="search-form" #search ="ngForm">
-      <input class="search" type="text" name="search-vendor" placeholder="Search Vendor" required="" [(ngModel)]="body.email">
+      <input class="search" type="text" name="search-vendor" placeholder="Search Vendor" required [(ngModel)]="body.email">
       <button class="img-btn" (click)="onFind(search)" type="submit"><img src="./../../assets/icon.svg">  </button>
     </form>
 

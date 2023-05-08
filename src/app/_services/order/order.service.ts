@@ -24,4 +24,16 @@ export class OrderService {
     return this.http.post<any>(URL+PATH+'update/status', status)
   }
 
+  updateRejectStatus(status : any) {
+    return this.http.post<any>(URL+PATH+'update/reject', status)
+  }
+
+  updateOrder(order : any):any{
+    return this.http.post(URL+PATH+'update',order);
+  }
+
+  deleteItem(order : any):any{
+    return this.http.post(URL+PATH+'delete/item',order);
+  }
+
 }

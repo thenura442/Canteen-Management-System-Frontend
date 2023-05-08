@@ -29,7 +29,7 @@ export class VendorService {
     return this.http.post<Vendor>(URL+PATH+'delete/id', deleteVendorSettings);
   }
 
-  // getVendors(body: any) : any {
-  //   return this.http.get(URL+PATH+'get/assignments', body);
-  // }
+  getVendors() : any {
+    return this.http.get(URL+PATH+'get/access');
+  }
 }

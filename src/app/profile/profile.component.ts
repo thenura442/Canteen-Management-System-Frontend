@@ -43,7 +43,7 @@ export class ProfileComponent implements OnInit {
 
   user: Employee = {...this.orginalUser}
 
-  constructor(private authService: AuthService, private uploadService: UploadService , private userService: UserService, private router: Router){}
+  constructor(private authService: AuthService, private uploadService: UploadService , private userService: UserService){}
 
   ngOnInit(): void {
     this.authService.currentData.subscribe(dataSub => {
@@ -146,14 +146,6 @@ export class ProfileComponent implements OnInit {
 
     this.postSuccess = false;
     this.postError = false;
-  }
-
-
-  logout(){
-    this.authService.logOut().subscribe((logout: any) => {
-      console.log(logout);
-      this.router.navigateByUrl('/login');
-    })
   }
 
 }

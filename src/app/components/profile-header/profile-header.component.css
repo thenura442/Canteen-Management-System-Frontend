@@ -1,0 +1,67 @@
+/* Customer profile part */
+
+.profile-div {
+  height: fit-content;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  width: 100%;
+}
+
+.inner-profile-div {
+  height: 60px;
+  width: 60px;
+}
+
+.profile-img {
+  height: 90%;
+  width: 90%;
+  border: 3px solid greenyellow;
+  border-radius: 100px;
+  cursor: pointer;
+}
+
+.inner-logout-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: fit-content;
+  width: fit-content;
+  margin-right: 5%;
+  cursor: pointer;
+}
+
+.logout-btn {
+  height: fit-content;
+  font-size: 22px;
+  color: #f76161;
+  font-weight: 500;
+}
+
+.account-info {
+  height: fit-content;
+  font-size: 20px;
+  color: #3a3636;
+  font-weight: 500;
+}
+
+.img {
+  margin-left: 10px;
+  height: 40px;
+  width: 40px;
+}
+
+.back-img {
+  margin-top: 5px;
+  margin-left: 10px;
+  height: 30px;
+  width: 30px;
+}
+
+
+.container-div {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

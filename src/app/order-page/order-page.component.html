@@ -1,11 +1,11 @@
 <div class="container">
+  <app-profile-header></app-profile-header>
   <h1 class="header">Order Details</h1>
-
   <div class="portion">
       <div class="form-container">
         <div class="order_inner">
           <h2 class="order_header">{{vendor.vendor_name}}</h2>
-          <div class="order_inner_right"><a class="view-order"><img class="img-right" src="./../../assets/Icon button.svg">View Order</a></div>
+          <!-- <div class="order_inner_right"><a class="view-order"><img class="img-right" src="./../../assets/Icon button.svg">View Order</a></div> -->
         </div>
 
 
@@ -24,36 +24,33 @@
         </div>
 
         <div class="order_inner">
-          <h3 class="order_normal"><img class="date-time-btn" src="./../../assets/calendar.svg"> : &nbsp;{{ order.date }}</h3>
+          <h3 class="date-time"><img class="date-time-btn" src="./../../assets/calendar.svg"> : &nbsp;{{ order.date }}</h3>
         </div>
 
         <div class="order_inner">
-          <h3 class="order_normal"><img class="date-time-btn" src="./../../assets/clock.svg"> : &nbsp;{{ order.time }}</h3>
+          <h3 class="date-time"><img class="date-time-btn" src="./../../assets/clock.svg"> : &nbsp;{{ order.time }}</h3>
         </div>
 
         <div class="buttons-div" *ngIf="order.status === 'pending'">
           <button class="form-button" (click)="acceptStatus()">Accept Order</button>
-          <div class="order_inner_right"><img class="order-arrow" src="./../../assets/arrow.svg"></div>
+          <!--   -->
         </div>
 
         <div class="buttons-div" *ngIf="order.status === 'in progress'">
           <button class="form-button" style="background-color: #B702F6;" (click)="pickStatus()">Notify Pick Up</button>
-          <div class="order_inner_right"><img class="order-arrow" src="./../../assets/arrow.svg"></div>
+          <!--   -->
         </div>
 
         <div class="buttons-div" *ngIf="order.status === 'pick up'">
           <button class="form-button" style="background-color: #3CB371;" (click)="completeStatus()">Order Completed</button>
-          <div class="order_inner_right"><img class="order-arrow" src="./../../assets/arrow.svg"></div>
+          <!--   -->
         </div>
       </div>
-
-
-
       <div class="form-container-holder">
-
-        <div class="form-container-2" style="width: 60%;">
+        <div class="form-container-2" style="width: 65%;">
           <div class="top-header">
             <h3 class="top-header-topic">Order Details</h3>
+            <img *ngIf="isEdit != true && noEditStatus != true" (click)="edit()" style="height: 20px; width: 20px; background-color: #93ffc4; margin-left: 20px;" src="../../assets/edit.svg">
           </div>
 
           <div class="items" style="margin-top: 70px;">
@@ -61,13 +58,28 @@
             <div class="item-row"  *ngFor="let item of order.products">
               <div class="item-row-left">
                 <img class="img-left" [src]="item.url">
-                <h3 class="item-left"> {{item.item_name}}</h3>
+                <h3 class="item-left" style="text-align: left;"> {{item.item_name}}</h3>
               </div>
               <div class="item-row-right">
-                <h3 class="item-left">{{item.price}}</h3>
-                <h3 class="item-left"> {{item.quantity}}</h3>
-                <h3 class="item-left">  {{item.product_total}}</h3>
+                <h3 class="item-left"  style="margin-right: 20%; padding-left: 5%; justify-content: right;">{{item.price}}</h3>
+                <div class="quantity-div">
+                  <div class="quantity-div-inner" (click)="minus(item.id)" [ngClass]="{'quantity-div-inner': isEdit === true || item.quantity !== '1', 'quantity-none' : isEdit === false || item.quantity == '1' }">
+                    <img class="quantity-img" src="../../assets/minus.svg">
+                  </div>
+                  <h3 class="item-left" style="margin-right: 20%; min-width: 20px;"> {{item.quantity}}</h3>
+                  <div class="quantity-div-inner" (click)="add(item.id)" [ngClass]="{'quantity-div-inner': isEdit === true, 'quantity-none' : isEdit === false }">
+                    <img class="quantity-img" src="../../assets/plus.svg">
+                  </div>
+                </div>
+                <h3 class="item-left" style="margin-right: 20%; min-width: 10%;">  {{item.product_total}}</h3>
+                <div class="quantity-div-inner" (click)="remove(item.id)" [ngClass]="{'quantity-div-inner': isEdit === true, 'quantity-none' : isEdit === false }">
+                  <img style="height: 20px; width: 20px;" src="../../assets/remove.svg">
+                </div>
               </div>
+            </div>
+            <div class="buttons-div" *ngIf="isEdit">
+              <button class="form-button" style="margin: 10px 0px; background-color: #3cb371; margin-right: 40px;" (click)="update()">Update</button>
+              <button class="form-button" style="margin: 10px 0px; background-color: #E8565B ;" (click)="cancel()">Cancel</button>
             </div>
           </div>
 
@@ -85,7 +97,7 @@
           </div>
         </div>
 
-        <div class="form-container-2" style="width: 35%; padding-bottom: 30px;">
+        <div class="form-container-2" style="width: 30%; padding-bottom: 30px;">
           <div class="top-header">
             <h3 class="top-header-topic">Customer</h3>
           </div>
@@ -110,7 +122,7 @@
             </div>
             <div class="item-column">
               <h3 class="item-customer"> Type</h3>
-              <h3 class="item-customer-value"> Student</h3>
+              <h3 class="item-customer-value"> {{order.payment_type}}</h3>
             </div>
           </div>
         </div>
@@ -125,16 +137,17 @@
         <h3 class="item-customer" style="margin-top: 70px; font-weight: 600;"> Reason</h3>
 
         <form class="form-reject">
-          <select class="form-input" name="reject_reason" required>
+          <select class="form-input" name="reject_reason" required [(ngModel)]="reason_reject">
             <option value="" disabled selected hidden>Select Reason</option>
-            <option value="open">Closing Soon</option>
-            <option value="blocked">Lacking Ingredients or Items</option>
-            <option value="blocked">N/A</option>
+            <option value="Closing Soon">Closing Soon</option>
+            <option value="Items out of Stock">Items out of Stock</option>
+            <option value="Customer Cancel Request">Customer Cancel Request</option>
+            <option value="N/A">N/A</option>
           </select>
         </form>
 
         <div class="buttons-div">
-          <button class="form-button" style="margin: 10px 0px; background-color: #E8565B ;">Reject</button>
+          <button class="form-button" [ngClass]="{'disabled-reject': noEditStatus === true, 'form-button' : noEditStatus === false }" style="margin: 10px 0px; background-color: #E8565B ;" (click)="rejectStatus()">Reject</button>
         </div>
       </div>
   </div>

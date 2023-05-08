@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../_services/auth/auth.service';
 import { Employee } from '../_interfaces/employee';
+import { VendorService } from '../_services/vendor/vendor.service';
+import { EmployeeService } from '../_services/employee/employee.service';
 
 @Component({
   selector: 'app-employee',
@@ -10,7 +12,7 @@ import { Employee } from '../_interfaces/employee';
 })
 export class EmployeeComponent implements OnInit{
 
-  constructor(private authService: AuthService){}
+  constructor(private employeeService : EmployeeService, private vendorService : VendorService  ,private authService: AuthService){}
 
   postErrorFind = false;
   postErrorMessageFind = "";
@@ -22,16 +24,18 @@ export class EmployeeComponent implements OnInit{
   postError = false;
   postErrorMessage = "";
 
-  onTrue = false;
   updateTrue = false;
-  date: any;
-  password2: string = "";
-  retypepassword: string = this.password2;
   type : any;
+
+  vendorForm : any = []
 
   ngOnInit(){
     this.authService.currentData.subscribe(dataSub => {
       this.type= dataSub.type;
+    })
+
+    this.vendorService.getVendors().subscribe((vendors : any) => {
+      this.vendorForm = vendors;
     })
   }
 
@@ -46,7 +50,7 @@ export class EmployeeComponent implements OnInit{
     access: "",
     type: "",
     vendor: "",
-    url: "",
+    url: "https://canteen-management-system-nsbm.s3.ap-south-1.amazonaws.com/profile+pic.jpg",
     password: ""
   };
 
@@ -60,33 +64,130 @@ export class EmployeeComponent implements OnInit{
   }
 
 
-  // onSubmit(form: NgForm) {
-  //   console.log('in on submit : '+ form.valid);
-  //   this.datepipe.transform(this.date, 'yyyy-MM-dd');
-  //   this.lecturerSettings.dob = this.date;
-  //   if(form.valid && this.lecturerSettings.password === this.retypepassword && this.lecturerSettings.dle_access != 'Set DLE Access') {
-  //     this.messages();
-  //     this.register.postEmployeeSettingsForm(this.lecturerSettings).subscribe((result) => {
-  //       console.log(result);
-  //       if(Object.hasOwn(result,'Error')){
-  //         const status = Object.getOwnPropertyDescriptor(result, 'Status');
-  //         const error = Object.getOwnPropertyDescriptor(result, 'Error');
+   onSubmit(form: NgForm) {
+    if(form.valid) {
+      this.messages();
+      this.employeeForm.password = this.employeeForm.email+'-'+this.employeeForm.dob
+      this.employeeService.postEmployeeForm(this.employeeForm).subscribe((result : any) => {;
+        if(Object.hasOwn(result,'Error')){
+          const status = Object.getOwnPropertyDescriptor(result, 'Status');
+          const error = Object.getOwnPropertyDescriptor(result, 'Error');
 
-  //         if(status?.value === "400") {
-  //           this.onHttpError(error?.value)
-  //         }
-  //         else {
-  //           this.onHttpError("Something went Wrong with the Server try again later,.. If the Issue Persists please Contact Support!");
-  //           console.log(result)
-  //         }
-  //       }
-  //       else {
-  //         this.postError = false;
-  //         this.postSuccess = true;
-  //         this.postSuccessMessage = "Operation Successful with ID - " + result._id;
-  //         this.lecturerSettings = this.orginalLecturerSettings;
-  //       }
-  //     });
-  //   }
-  // }
+          if(status?.value === "400") {
+            this.onHttpError(error?.value)
+          }
+          else {
+            this.onHttpError("Something went Wrong with the Server try again later,.. If the Issue Persists please Contact Support!");
+          }
+        }
+        else {
+          this.postError = false;
+          this.postSuccess = true;
+          this.postSuccessMessage = result.email + "- Successfully Registered";
+          this.employeeForm = this.originalEmployeeForm;
+        }
+      });
+    }
+  }
+
+
+  orginalBody : any = {
+    email: ''
+  }
+
+  body : any = {...this.orginalBody}
+
+  onFind(search: NgForm){
+    if(search.valid){
+      this.messages();
+
+      this.employeeService.getEmployeeId(this.body).subscribe((result : any) => {
+        if(result == null) {
+          this.postErrorMessageFind = "Employee not Found";
+          this.postErrorFind = true;
+          this.postSuccessFind = false;
+        }
+        else{
+          this.updateTrue= true;
+          this.employeeForm = result;
+          this.postErrorFind = false;
+          this.postSuccessFind = true;
+          this.postSuccessMessageFind = result.email + " - Employee Found";
+          this.updateTrue = true;
+        }
+      })
+    }
+  }
+
+
+  onUpdate(form: NgForm){
+    if(form.valid){
+      this.messages();
+      this.employeeService.updateEmployee(this.employeeForm).subscribe((result) => {
+        if (Object.hasOwn(result, 'Error')) {
+          const status = Object.getOwnPropertyDescriptor(result, 'Status');
+          const error = Object.getOwnPropertyDescriptor(result, 'Error');
+
+          if (status?.value === "400") {
+            this.onHttpError(error?.value);
+          }
+          else {
+            this.onHttpError("Something went Wrong with the Server try again later,.. If the Issue Persists please Contact Support!");
+          }
+        }
+        else {
+          this.postError = false;
+          this.postSuccess = true;
+          this.postSuccessMessage = this.body.email + " - Updated Successfully";
+          this.employeeForm = {...this.originalEmployeeForm}
+          this.body = {...this.orginalBody}
+          this.updateTrue = false;
+        }
+      });
+    }
+  }
+
+
+  onDelete(form: NgForm){
+    if(form.valid){
+      this.messages();
+      this.employeeService.deleteEmployee(this.employeeForm).subscribe((result : any) => {
+        if(Object.hasOwn(result,'Error')){
+          const status = Object.getOwnPropertyDescriptor(result, 'Status');
+          const error = Object.getOwnPropertyDescriptor(result, 'Error');
+
+          if(status?.value === "400") {
+            this.onHttpError(error?.value)
+          }
+          else {
+            this.onHttpError("Something went Wrong with the Server try again later,.. If the Issue Persists please Contact Support!");
+          }
+        }
+        else {
+          this.postError = false;
+          this.postSuccess = true;
+          this.postSuccessMessage = this.employeeForm.email + " - Deleted Successfully!"
+          this.employeeForm = {...this.originalEmployeeForm}
+          this.body = {...this.orginalBody}
+          this.updateTrue = false;
+        }
+      });
+    }
+  }
+
+  onCancel():void {
+    this.employeeForm = {...this.originalEmployeeForm}
+    this.messages();
+    this.updateTrue= false;
+    this.body = {...this.orginalBody}
+  }
+
+  messages(): void{
+
+    this.postErrorFind = false;
+    this.postSuccessFind = false;
+
+    this.postSuccess = false;
+    this.postError = false;
+  }
 }

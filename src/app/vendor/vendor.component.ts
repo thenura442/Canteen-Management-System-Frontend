@@ -23,11 +23,10 @@ export class VendorComponent implements OnInit {
   postErrorMessage = "";
 
   updateTrue = false;
-  type : any;
   image: any = [];
   originalImage: any = [];
 
-  constructor(private authService: AuthService, private vendorService: VendorService, private uploadService: UploadService){}
+  constructor(private vendorService: VendorService, private uploadService: UploadService){}
 
   ngOnInit(){
 

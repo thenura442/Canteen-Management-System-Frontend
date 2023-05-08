@@ -12,7 +12,6 @@ import { AppComponent } from './app.component';
 
 const routes: Routes = [
   { path: 'login',   component: LoginComponent},
-  { path: 'home', component: AppComponent},
   { path: 'employee',   component: EmployeeComponent},
   { path: 'vendor',   component: VendorComponent},
   { path: 'customer',   component: CustomerComponent},
@@ -20,7 +19,7 @@ const routes: Routes = [
   { path: 'profile',   component: ProfileComponent},
   { path: 'orders',   component: OrdersComponent},
   { path: 'orders/:id',   component: OrderPageComponent},
-  { path: '',   redirectTo: '', pathMatch: 'full' }
+  { path: '',   redirectTo: 'orders', pathMatch: 'full' }
   //{ path: '**', component: PageNotFoundComponent }
 ];
 

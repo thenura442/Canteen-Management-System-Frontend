@@ -2,12 +2,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  height: fit-content;
 }
 
 /* CONTAINER */
 
 .container {
-  padding-top: 50px;
   margin-top: 1%;
   margin-left: 5%;
   margin-right: 5%;
@@ -78,7 +78,6 @@ img {
   height: fit-content;
   border-radius: 8px;
   width: 100%;
-  min-width: 750px;
   padding: 30px 30px 30px 30px;
   margin-bottom: 40px;
   position: relative;
@@ -198,6 +197,24 @@ form {
   margin-left: 10px;
 }
 
+/* .color_point {
+  width: 10px;
+  height: 10px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  border: 1px solid #F6B445;
+  border-radius: 50px;
+  margin-left: 20px;
+}
+
+.status {
+  margin-left: 10px;
+  align-items: center;
+  justify-content: right;
+  height: fit-content;
+} */
+
 .color_point {
   width: 10px;
   height: 10px;
@@ -207,6 +224,13 @@ form {
   border: 1px solid #F6B445;
   border-radius: 50px;
   margin-left: 20px;
+}
+
+.status {
+  margin-left: 10px;
+  align-items: center;
+  justify-content: right;
+  height: fit-content;
 }
 
 .pending {
@@ -240,11 +264,12 @@ form {
   flex-direction: row;
   height: fit-content;
   align-items: center;
+  height: fit-content;
   margin: 3px 0px;
 }
 
 .order_header {
-  width: fit-content;
+  width: 100%;
   min-width: 25%;
   height: 30px;
   text-align: left;
@@ -257,6 +282,23 @@ form {
 .order_normal {
   width: fit-content;
   min-width: 12%;
+  height: 30px;
+  text-align: left;
+  margin-right : 10px;
+
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: medium;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  color: #727272;
+}
+
+.date-time {
+  width: 100%;
+  min-width: 100%;
   height: 30px;
   text-align: left;
   margin-right : 10px;
@@ -292,13 +334,6 @@ form {
   height: 40px;
   width: auto;
   margin-right: 5%;
-}
-
-.status {
-  margin-left: 10px;
-  align-items: center;
-  justify-content: right;
-  height: fit-content;
 }
 
 .date-time-btn {
@@ -392,7 +427,7 @@ form {
   display: flex;
   flex-direction: row;
   height: fit-content;
-  width: 50%;
+  width: 40%;
   align-items: center;
 }
 
@@ -506,8 +541,8 @@ form {
 
 
 .img-left {
-  height: 60px;
-  width: auto;
+  height: auto;
+  width: 80px;
 }
 
 /* Customer profile part */
@@ -531,3 +566,54 @@ form {
   border: 1px solid transparent;
   border-radius: 100px;
 }
+
+
+
+/* Order Editing */
+
+.quantity-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  margin-left: 10px;
+  min-width: 70px;
+  margin-left: 30px;
+  align-items: center;
+}
+
+.quantity-none {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.quantity-div-inner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+}
+
+.quantity-img {
+  height: 30px;
+  width: 30px;
+  background-color: #eeeeee;
+  padding: 10px;
+  border-radius: 25px;
+}
+
+.disabled-reject {
+  width: 15%;
+  height: 40px;
+  padding: 0px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.84px;
+  color: #FFFFFF;
+  min-width: 140px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+

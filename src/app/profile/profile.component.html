@@ -1,5 +1,6 @@
 <!-- <div class="container" *ngIf="user.email != ''"> -->
 <div class="container">
+  <app-profile-header></app-profile-header>
   <h1 class="header">Profile</h1>
 
   <div class="portion">
@@ -105,10 +106,6 @@
 
     <div *ngIf="postSuccess" class="message-success">
       {{ postSuccessMessage +'!'}}
-    </div>
-
-    <div class="logout">
-      <button class="logout-button" style="margin-bottom: 20px;" (click)="logout()">Logout</button>
     </div>
   </div>
 </div>

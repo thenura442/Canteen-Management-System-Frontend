@@ -1,41 +1,51 @@
 <div class="container">
+  <app-profile-header></app-profile-header>
   <h1 class="header">Customers</h1>
 
   <div class="portion">
 
-    <form class="search-form" action="">
-      <input class="search" type="text" placeholder="Search Customer" >
-      <button class="img-btn" type="submit"><img src="./../../assets/icon.svg">  </button>
+    <form class="search-form" #search ="ngForm">
+      <input class="search" type="text" name="search-customer" placeholder="Search Customer" required [(ngModel)]="body.email" >
+      <button class="img-btn" (click)="onFind(search)" type="submit"><img src="./../../assets/icon.svg">  </button>
     </form>
 
-    <form>
+    <div *ngIf="postErrorFind" class="message-failure">
+      {{ postErrorMessageFind +'!'}}
+    </div>
+
+    <div *ngIf="postSuccessFind" class="message-success">
+      {{ postSuccessMessageFind +'!'}}
+    </div>
+
+
+    <form #form ="ngForm">
       <div class="form-container">
         <div class="form-row">
           <label class="form-label">First Name:</label>
-          <input class="form-input" required style="margin-left: 100px;" type="text" placeholder="Enter First Name"><br>
+          <input class="form-input" required style="margin-left: 100px;" type="text" placeholder="Enter First Name" name="first-name" required [(ngModel)]="customerForm.first_name"><br>
 
           <label class="form-label">NIC:</label>
-          <input class="form-input" required style="margin-left: 150px;" type="text" placeholder="Enter NIC"><br>
+          <input class="form-input" required style="margin-left: 150px;" type="text" placeholder="Enter NIC" name="customer-nic" required [(ngModel)]="customerForm.nic"><br>
 
           <label class="form-label">Email:</label>
-          <input class="form-input" required style="margin-left: 139px;" type="text" placeholder="Enter Email"><br>
+          <input class="form-input" required style="margin-left: 139px;" type="text" placeholder="Enter Email" name="customer-email" required [(ngModel)]="customerForm.email"><br>
 
           <label class="form-label">Address:</label>
-          <input class="form-input" required style="margin-left: 123px;" type="text" placeholder="Enter Address"><br>
+          <input class="form-input" required style="margin-left: 123px;" type="text" placeholder="Enter Address" name="customer-address" required [(ngModel)]="customerForm.address"><br>
 
         </div>
         <div class="form-row">
           <label class="form-label">Last Name:</label>
-          <input class="form-input" required style="margin-left: 100px;" type="text" placeholder="Enter Last Name"><br>
+          <input class="form-input" required style="margin-left: 100px;" type="text" placeholder="Enter Last Name" name="last-name" required [(ngModel)]="customerForm.last_name"><br>
 
           <label class="form-label">DOB:</label>
-          <input class="form-input" required style="margin-left: 141px;" type="date"><br>
+          <input class="form-input" required style="margin-left: 141px;" type="date" name="customer-dob" required [(ngModel)]="customerForm.dob"><br>
 
           <label class="form-label">Mobile:</label>
-          <input class="form-input" required style="margin-left: 128px;" type="text" placeholder="Enter Mobile Number"><br>
+          <input class="form-input" required style="margin-left: 128px;" type="text" placeholder="Enter Mobile Number" name="customer-mobile" required [(ngModel)]="customerForm.mobile_no"><br>
 
           <label class="form-label">Access:</label>
-          <select class="form-input" required style="margin-left: 130px;">
+          <select class="form-input" required style="margin-left: 130px;" name="customer-access" required [(ngModel)]="customerForm.access">
             <option value="" disabled selected hidden>Set Access</option>
             <option value="open">Open</option>
             <option value="blocked">Blocked</option>
@@ -43,11 +53,20 @@
 
         </div>
       </div>
+
+      <div *ngIf="postError" class="message-failure">
+        {{ postErrorMessage +'!'}}
+      </div>
+
+      <div *ngIf="postSuccess" class="message-success">
+        {{ postSuccessMessage +'!'}}
+      </div>
+
       <div class="buttons-div">
-        <button type="submit" class="form-button">INSERT CUSTOMER</button>
-        <button class="form-button disabled">UPDATE CUSTOMER</button>
-        <button class="form-button disabled">DELETE CUSTOMER</button>
-        <button class="form-button disabled red">CANCEL</button>
+        <button [ngClass]="updateTrue == false ? 'form-button' : 'disabled'" class="form-button" (click)="onSubmit(form)">Insert Customer</button>
+        <button [ngClass]="updateTrue == true ? 'form-button' : 'disabled'" class="form-button" (click)="onUpdate(form)">Update Customer</button>
+        <button [ngClass]="updateTrue == true ? 'form-button' : 'disabled'" class="form-button" (click)="onDelete(form)">Delete Customer</button>
+        <button [ngClass]="updateTrue == true ? 'form-button' : 'disabled'" class="form-button red" (click)="onCancel()">Cancel</button>
       </div>
     </form>
   </div>

@@ -25,6 +25,7 @@ import { OrdersPickComponent } from './components/orders-pick/orders-pick.compon
 import { OrdersCompletedComponent } from './components/orders-completed/orders-completed.component';
 import { OrderfilterPipe } from './_pipes/orderfilter/orderfilter.pipe';
 import { ItemsAllComponent } from './components/items-all/items-all.component';
+import { ProfileHeaderComponent } from './components/profile-header/profile-header.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +47,7 @@ import { ItemsAllComponent } from './components/items-all/items-all.component';
     OrdersCompletedComponent,
     OrderfilterPipe,
     ItemsAllComponent,
+    ProfileHeaderComponent,
   ],
   imports: [
     BrowserModule,
