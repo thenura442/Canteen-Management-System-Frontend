@@ -1,13 +1,22 @@
-import { Component} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.css']
 })
-export class OrdersComponent {
+export class OrdersComponent implements OnInit {
+
+  ngOnInit(): void {
+    this.isLoading = true;
+
+    setTimeout(() => {
+      this.isLoading = false;
+    },1000)
+  }
 
   searchedOrderId : string = "";
+  isLoading = true;
 
   allStatus  = true;
   pendingStatus  = false;

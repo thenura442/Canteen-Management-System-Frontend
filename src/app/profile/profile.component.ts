@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/auth/auth.service';
 import { UserService } from '../_services/user/user.service';
 import { Employee } from '../_interfaces/employee';
-import { Router } from '@angular/router';
 import { UploadService } from '../_services/upload/upload.service';
 
 @Component({
@@ -15,6 +14,7 @@ export class ProfileComponent implements OnInit {
   password : boolean = false;
   image: any = [];
   path = "";
+  isLoading = true;
 
   postErrorFind = false;
   postErrorMessageFind = "";
@@ -50,6 +50,7 @@ export class ProfileComponent implements OnInit {
       if(dataSub.email != null || dataSub.email != undefined){
         this.userService.getLogged({email : dataSub.email}).subscribe((result : any) => {
           this.user = result;
+          this.isLoading = false;
           console.log(this.user);
         })
       }

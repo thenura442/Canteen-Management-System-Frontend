@@ -32,8 +32,4 @@ export class OrderService {
     return this.http.post(URL+PATH+'update',order);
   }
 
-  deleteItem(order : any):any{
-    return this.http.post(URL+PATH+'delete/item',order);
-  }
-
 }

@@ -1,4 +1,6 @@
-<div class="container">
+
+<app-spinner *ngIf="isLoading"></app-spinner>
+<div class="container" *ngIf="!isLoading">
   <app-profile-header></app-profile-header>
   <h1 class="header">Order Details</h1>
   <div class="portion">
@@ -46,6 +48,76 @@
           <!--   -->
         </div>
       </div>
+
+
+
+
+
+
+      <div class="form-container" style="justify-content: center;">
+        <div class="order_inner" >
+          <h2 class="order_inner">{{vendor.vendor_name}}</h2>
+          <p *ngIf="order.status === 'pending'" class="color_point pending"></p>
+          <p *ngIf="order.status === 'in progress'" class="color_point progress"></p>
+          <p *ngIf="order.status === 'pick up'" class="color_point pick"></p>
+          <p *ngIf="order.status === 'completed'" class="color_point completed"></p>
+          <p *ngIf="order.status === 'rejected'  || order.status === 'cancelled'" class="color_point cancel-reject"></p>
+          <span class="status">{{ order.status | titlecase}}</span>
+        </div>
+        <!-- <div class="order_inner">
+          <h2 class="order_header">{{vendor.vendor_name}}</h2>
+          <div class="order_inner_right"><a class="view-order"><img class="img-right" src="./../../assets/Icon button.svg">View Order</a></div>
+        </div> -->
+
+        <div style="height: fit-content; display: flex; flex-direction: row;">
+          <div class="order_inner" >
+            <h3 class="order_normal">Order No : &nbsp;{{ order.id }}</h3>
+          </div>
+
+          <div class="order_inner" style="margin-left: 40px;">
+            <h3 class="order_normal">Customer : &nbsp;{{ customer.first_name }}</h3>
+          </div>
+
+          <div class="order_inner" style="margin-left: 40px;">
+            <h3 class="date-time"><img class="date-time-btn" src="./../../assets/calendar.svg"> : &nbsp;{{ order.date }}</h3>
+          </div>
+
+          <div class="order_inner" style="margin-left: 40px;">
+            <h3 class="date-time"><img class="date-time-btn" src="./../../assets/clock.svg"> : &nbsp;{{ order.time }}</h3>
+          </div>
+
+          <div class="order_inner" style="margin-left: 40px;">
+            <h3 class="order_normal">Total : &nbsp;{{ order.total }}</h3>
+          </div>
+          <div class="order_inner" style="margin-left: 40px;">
+            <h3 class="order_normal">Type : &nbsp;{{ order.payment_type | titlecase }}</h3>
+          </div>
+        </div>
+
+        <div class="buttons-div" *ngIf="order.status === 'pending'">
+          <button class="form-button" (click)="acceptStatus()">Accept Order</button>
+          <!--   -->
+        </div>
+
+        <div class="buttons-div" *ngIf="order.status === 'in progress'">
+          <button class="form-button" style="background-color: #B702F6;" (click)="pickStatus()">Notify Pick Up</button>
+          <!--   -->
+        </div>
+
+        <div class="buttons-div" *ngIf="order.status === 'pick up'">
+          <button class="form-button" style="background-color: #3CB371;" (click)="completeStatus()">Order Completed</button>
+          <!--   -->
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
       <div class="form-container-holder">
         <div class="form-container-2" style="width: 65%;">
           <div class="top-header">

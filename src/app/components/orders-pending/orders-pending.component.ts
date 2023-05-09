@@ -15,6 +15,7 @@ export class OrdersPendingComponent implements OnInit {
   @Input() orderId = "";
 
   pendingArray : any = [];
+  isLoading = true;
 
   orginalVendor : Vendor = {
     vendor_name: "",
@@ -36,6 +37,7 @@ export class OrdersPendingComponent implements OnInit {
     this.orderService.getOrders({store_email : vendor_email}).subscribe(orders => {
       let allOrders : any = [];
       allOrders = orders;
+      this.isLoading = false;
       for(let i = 0; i < allOrders.length; i++) {
         if(allOrders[i].status === 'pending'){
           this.pendingArray.push(allOrders[i]);

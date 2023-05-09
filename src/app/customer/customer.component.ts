@@ -23,6 +23,7 @@ export class CustomerComponent implements OnInit {
   postErrorMessage = "";
 
   updateTrue = false;
+  isLoading = true;
 
   orginalCustomerForm : Customer = {
     first_name: "",
@@ -40,6 +41,9 @@ export class CustomerComponent implements OnInit {
   customerForm : Customer = {...this.orginalCustomerForm};
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.isLoading = false;
+    },100)
   }
 
 

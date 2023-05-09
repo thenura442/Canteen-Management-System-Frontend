@@ -1,4 +1,5 @@
-<div class="container">
+<app-spinner *ngIf="isLoading"></app-spinner>
+<div class="container" *ngIf="!isLoading">
   <app-profile-header></app-profile-header>
   <h1 class="header">Orders</h1>
 

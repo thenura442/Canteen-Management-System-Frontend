@@ -1,4 +1,4 @@
-*{
+  *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -223,7 +223,7 @@ form {
   flex-grow: 0;
   border: 1px solid #F6B445;
   border-radius: 50px;
-  margin-left: 20px;
+  margin-left: 25px;
 }
 
 .status {

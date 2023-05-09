@@ -1,3 +1,4 @@
+<app-spinner *ngIf="isLoading"></app-spinner>
 <div class="form-container" [routerLink]="['/orders', order.id]" *ngFor="let order of completedArray | orderfilter:orderId">
   <div class="order_inner">
     <h2 class="order_header">{{vendor.vendor_name}}</h2>

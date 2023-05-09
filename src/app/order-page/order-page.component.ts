@@ -44,6 +44,7 @@ export class OrderPageComponent {
   isEdit = false;
   noEditStatus = false;
   reason_reject = "";
+  isLoading = true;
 
   orginalVendor : Vendor = {
     vendor_name: "",
@@ -68,6 +69,7 @@ export class OrderPageComponent {
 
     this.orderService.getById({id: order_id}).subscribe(result => {
       console.log(result)
+      this.isLoading = false;
       if(result.status == 'completed' || result.status == 'rejected' || result.status == 'cancelled'){
         this.noEditStatus = true;
       }
@@ -188,12 +190,12 @@ export class OrderPageComponent {
 
 
   remove(id : any){
-    this.orderService.deleteItem({item_id:id, order_id: this.order.id}).subscribe((result : any) => {
-      this.reload();
-      if(result.deletedCount == 1){
-        this.order = {...this.orginalOrder}
+    let order = this.order
+    for(let i = 0; i< order.products.length; i++){
+      if(order.products[i].id === id){
+        order.products.splice(i, 1);
       }
-    })
+    }
   }
 
 
