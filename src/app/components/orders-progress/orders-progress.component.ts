@@ -15,6 +15,7 @@ export class OrdersProgressComponent implements OnInit {
   @Input() orderId = "";
 
   progressArray : any = [];
+  isLoading = true;
 
   orginalVendor : Vendor = {
     vendor_name: "",
@@ -41,6 +42,7 @@ export class OrdersProgressComponent implements OnInit {
           this.progressArray.push(allOrders[i]);
         }
       }
+      this.isLoading = false;
     })
 
     this.vendorService.findVendorId({email : vendor_email}).subscribe((result : any) => {

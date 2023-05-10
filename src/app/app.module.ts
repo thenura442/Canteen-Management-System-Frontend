@@ -27,6 +27,8 @@ import { OrderfilterPipe } from './_pipes/orderfilter/orderfilter.pipe';
 import { ItemsAllComponent } from './components/items-all/items-all.component';
 import { ProfileHeaderComponent } from './components/profile-header/profile-header.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { SpinnerTopComponent } from './components/spinner-top/spinner-top.component';
+import { NoOrdersComponent } from './components/no-orders/no-orders.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +52,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     ItemsAllComponent,
     ProfileHeaderComponent,
     SpinnerComponent,
+    SpinnerTopComponent,
+    NoOrdersComponent,
   ],
   imports: [
     BrowserModule,

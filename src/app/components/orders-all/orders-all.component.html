@@ -1,4 +1,4 @@
-<app-spinner *ngIf="isLoading"></app-spinner>
+<app-spinner-top *ngIf="isLoading"></app-spinner-top>
 <div class="form-container" [routerLink]="['/orders', order.id]" *ngFor="let order of orders | orderfilter:orderId">
   <div class="order_inner">
     <h2 class="order_header">{{vendor.vendor_name}}</h2>
@@ -29,3 +29,5 @@
     <div class="order_inner_right"><img class="order-arrow" src="./../../assets/arrow.svg"></div>
   </div>
 </div>
+
+<app-no-orders *ngIf="!orders.length && !  isLoading"></app-no-orders>

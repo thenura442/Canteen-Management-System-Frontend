@@ -14,6 +14,7 @@ export class OrdersPickComponent implements OnInit {
 
   @Input() orderId = "";
   pickArray : any = [];
+  isLoading = true;
 
   orginalVendor : Vendor = {
     vendor_name: "",
@@ -40,6 +41,7 @@ export class OrdersPickComponent implements OnInit {
           this.pickArray.push(allOrders[i]);
         }
       }
+      this.isLoading = false;
     })
 
     this.vendorService.findVendorId({email : vendor_email}).subscribe((result : any) => {
