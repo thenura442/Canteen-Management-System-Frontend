@@ -77,7 +77,7 @@ export class VendorComponent implements OnInit {
         else {
           this.postError = false;
           this.postSuccess = true;
-          this.postSuccessMessage = result.email + "- Successfully Registered";
+          this.postSuccessMessage = this.vendorForm.email + "- Successfully Registered";
           this.vendorForm = this.originalVendorForm;
           this.image = this.originalImage;
         }
@@ -99,7 +99,7 @@ export class VendorComponent implements OnInit {
 
       this.vendorService.findVendorId(this.body).subscribe((result : any) => {
         if(result == null) {
-          this.postErrorMessageFind = "Employee not Found";
+          this.postErrorMessageFind = "Vendor not Found";
           this.postErrorFind = true;
           this.postSuccessFind = false;
         }

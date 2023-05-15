@@ -17,17 +17,6 @@ export class OrdersCompletedComponent implements OnInit {
   completedArray : any = [];
   isLoading = true;
 
-  orginalVendor : Vendor = {
-    vendor_name: "",
-    email: "",
-    description: "",
-    url: "",
-    mobile_no: "",
-    access: ""
-  }
-
-  vendor: Vendor = {...this.orginalVendor}
-
   ngOnInit(): void {
     this.isLoading = true;
     let vendor_email;
@@ -44,10 +33,6 @@ export class OrdersCompletedComponent implements OnInit {
           this.completedArray.push(allOrders[i]);
         }
       }
-    })
-
-    this.vendorService.findVendorId({email : vendor_email}).subscribe((result : any) => {
-      this.vendor = result;
     })
   }
 }

@@ -60,7 +60,6 @@ export class CustomerComponent implements OnInit {
       this.messages();
       this.customerForm.password = this.customerForm.email+'-'+this.customerForm.dob
       this.customerService.postCustomerForm(this.customerForm).subscribe((result : any) => {
-        console.log(result);
         if(Object.hasOwn(result,'Error')){
           const status = Object.getOwnPropertyDescriptor(result, 'Status');
           const error = Object.getOwnPropertyDescriptor(result, 'Error');
@@ -75,7 +74,7 @@ export class CustomerComponent implements OnInit {
         else {
           this.postError = false;
           this.postSuccess = true;
-          this.postSuccessMessage = result.email + "- Successfully Registered";
+          this.postSuccessMessage = this.customerForm.email + "- Successfully Registered";
           this.customerForm = this.orginalCustomerForm;
         }
       });
@@ -104,7 +103,7 @@ export class CustomerComponent implements OnInit {
           this.customerForm = result;
           this.postErrorFind = false;
           this.postSuccessFind = true;
-          this.postSuccessMessageFind = result.email + " - Customer Found";
+          this.postSuccessMessageFind = this.body.email + " - Customer Found";
           this.updateTrue = true;
         }
       })

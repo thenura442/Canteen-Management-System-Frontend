@@ -17,17 +17,6 @@ export class OrdersPendingComponent implements OnInit {
   pendingArray : any = [];
   isLoading = true;
 
-  orginalVendor : Vendor = {
-    vendor_name: "",
-    email: "",
-    description: "",
-    url: "",
-    mobile_no: "",
-    access: ""
-  }
-
-  vendor: Vendor = {...this.orginalVendor}
-
   ngOnInit(): void {
     let vendor_email;
     this.authService.currentData.subscribe(vendor => {
@@ -43,10 +32,6 @@ export class OrdersPendingComponent implements OnInit {
           this.pendingArray.push(allOrders[i]);
         }
       }
-    })
-
-    this.vendorService.findVendorId({email : vendor_email}).subscribe((result : any) => {
-      this.vendor = result;
     })
   }
 }

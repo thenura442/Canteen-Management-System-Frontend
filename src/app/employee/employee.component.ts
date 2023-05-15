@@ -83,7 +83,7 @@ export class EmployeeComponent implements OnInit{
         else {
           this.postError = false;
           this.postSuccess = true;
-          this.postSuccessMessage = result.email + "- Successfully Registered";
+          this.postSuccessMessage = this.employeeForm.email + "- Successfully Registered";
           this.employeeForm = this.originalEmployeeForm;
         }
       });

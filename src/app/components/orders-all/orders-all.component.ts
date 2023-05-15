@@ -18,17 +18,6 @@ export class OrdersAllComponent implements OnInit {
   orders : any = [];
   isLoading = true;
 
-  orginalVendor : Vendor = {
-    vendor_name: "",
-    email: "",
-    description: "",
-    url: "",
-    mobile_no: "",
-    access: ""
-  }
-
-  vendor: Vendor = {...this.orginalVendor}
-
   ngOnInit(): void {
     this.isLoading = true;
     let vendor_email;
@@ -39,10 +28,6 @@ export class OrdersAllComponent implements OnInit {
     this.orderService.getOrders({store_email : vendor_email}).subscribe(orders => {
       this.orders = orders;
         this.isLoading = false;
-    })
-
-    this.vendorService.findVendorId({email : vendor_email}).subscribe((result : any) => {
-      this.vendor = result;
     })
   }
 }

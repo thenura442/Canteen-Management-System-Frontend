@@ -10,23 +10,12 @@ import { VendorService } from 'src/app/_services/vendor/vendor.service';
   styleUrls: ['./orders-progress.component.css']
 })
 export class OrdersProgressComponent implements OnInit {
-  constructor(private orderService: OrderService, private authService: AuthService, private vendorService : VendorService){}
+  constructor(private orderService: OrderService, private authService: AuthService){}
 
   @Input() orderId = "";
 
   progressArray : any = [];
   isLoading = true;
-
-  orginalVendor : Vendor = {
-    vendor_name: "",
-    email: "",
-    description: "",
-    url: "",
-    mobile_no: "",
-    access: ""
-  }
-
-  vendor: Vendor = {...this.orginalVendor}
 
   ngOnInit(): void {
     let vendor_email;
@@ -43,10 +32,6 @@ export class OrdersProgressComponent implements OnInit {
         }
       }
       this.isLoading = false;
-    })
-
-    this.vendorService.findVendorId({email : vendor_email}).subscribe((result : any) => {
-      this.vendor = result;
     })
   }
 }
