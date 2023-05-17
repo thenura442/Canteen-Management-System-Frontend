@@ -134,8 +134,11 @@ form {
   background-color: #56BCE8;
   border-radius: 4px;
   letter-spacing: 0.84px;
-  color: #FFFFFF;
+  line-height: normal;
+  color: white;
+  font-weight: 600;
   min-width: 140px;
+  cursor: pointer;
 }
 
 .disabled {
@@ -155,7 +158,7 @@ form {
 
 
 .message-success {
-  margin: 40px 0px 40px 0px;
+  margin: 0px 0px 20px 0px;
   width: 40%;
   font-size: 18px;
   padding: 30px;
@@ -170,7 +173,7 @@ form {
 }
 
 .message-failure {
-  margin: 40px 0px 40px 0px;
+  margin: 0px 0px 20px 0px;
   width: 40%;
   font-size: 18px;
   padding: 30px;

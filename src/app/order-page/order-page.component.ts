@@ -5,6 +5,7 @@ import { Vendor } from '../_interfaces/vendor';
 import { ActivatedRoute } from '@angular/router';
 import { CustomerService } from '../_services/customer/customer.service';
 import { Order } from '../_interfaces/order';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-order-page',
@@ -12,7 +13,7 @@ import { Order } from '../_interfaces/order';
   styleUrls: ['./order-page.component.css']
 })
 export class OrderPageComponent {
-  constructor( private activatedRoute : ActivatedRoute , private customerService: CustomerService , private orderService: OrderService, private vendorService : VendorService){}
+  constructor( private activatedRoute : ActivatedRoute , private customerService: CustomerService , private orderService: OrderService, private vendorService : VendorService , private location : Location){}
 
   progressArray : any = [];
   orginalOrder: Order = {
@@ -36,6 +37,16 @@ export class OrderPageComponent {
       product_total: ""
     }]
   };
+
+  postErrorUpdate= false;
+  postErrorMessageUpdate = "";
+  postSuccessUpdate = false;
+  postSuccessMessageUpdate = "";
+
+  postErrorReject = false;
+  postErrorMessageReject = "";
+  postSuccessReject = false;
+  postSuccessMessageReject = "";
 
   order : Order = {...this.orginalOrder};
 
@@ -113,7 +124,6 @@ export class OrderPageComponent {
 
   rejectStatus(){
     if(this.reason_reject === ""){
-      console.log("Yoo")
       return;
     }
     let status = "rejected";
@@ -121,7 +131,15 @@ export class OrderPageComponent {
       status = "cancelled";
     }
     this.orderService.updateStatus({id: this.order_id , status : status, rejected_reason : this.reason_reject}).subscribe(order => {
-      console.log(order);
+      console.log(order)
+      if(order.message === "success") {
+        this.postSuccessMessageReject = " Order Updated Successfully!"
+        this.postSuccessReject = true;
+      }
+      else {
+        this.postErrorMessageReject = " Could not Update the Order at this Moment Try Again Later!"
+        this.postErrorReject = true;
+      }
       this.reload();
     })
   }
@@ -145,6 +163,10 @@ export class OrderPageComponent {
   cancel(){
     this.isEdit = false;
     this.reload();
+  }
+
+  goBack(){
+    this.location.back();
   }
 
 
@@ -191,10 +213,16 @@ export class OrderPageComponent {
 
   remove(id : any){
     let order = this.order
+    let total = Number(order.total);
+    let subtotal = Number(order.sub_total);
     for(let i = 0; i< order.products.length; i++){
       if(order.products[i].id === id){
+        total = total - Number(order.products[i].product_total)
+        subtotal = subtotal - Number(order.products[i].product_total)
         order.products.splice(i, 1);
       }
+      this.order.total = total.toString();
+      this.order.sub_total = subtotal.toString();
     }
   }
 
@@ -202,6 +230,14 @@ export class OrderPageComponent {
   update(){
     this.isEdit = false;
     this.orderService.updateOrder(this.order).subscribe((result : any) => {
+      if(result.message === "success") {
+        this.postSuccessMessageUpdate = " Order Updated Successfully!"
+        this.postSuccessUpdate = true;
+      }
+      else {
+        this.postErrorMessageUpdate = " Could not Update the Order at this Moment Try Again Later!"
+        this.postErrorUpdate = true;
+      }
       this.reload();
     })
   }

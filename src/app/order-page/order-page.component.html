@@ -26,11 +26,11 @@
         </div>
 
         <div class="order_inner">
-          <h3 class="date-time"><img class="date-time-btn" src="./../../assets/calendar.svg"> : &nbsp;{{ order.date }}</h3>
+          <h3 class="date-time"><img class="date-time-btn" src="./../../assets/calendar.svg">: &nbsp;{{ order.date }}</h3>
         </div>
 
         <div class="order_inner">
-          <h3 class="date-time"><img class="date-time-btn" src="./../../assets/clock.svg"> : &nbsp;{{ order.time }}</h3>
+          <h3 class="date-time"><img class="date-time-btn" src="./../../assets/clock.svg">: &nbsp;{{ order.time }}</h3>
         </div>
 
         <div class="buttons-div" *ngIf="order.status === 'pending'">
@@ -79,11 +79,11 @@
           </div>
 
           <div class="order_inner" style="margin-left: 40px;">
-            <h3 class="date-time"><img class="date-time-btn" src="./../../assets/calendar.svg"> : &nbsp;{{ order.date }}</h3>
+            <h3 class="date-time"><img class="date-time-btn" src="./../../assets/calendar.svg">: &nbsp;{{ order.date }}</h3>
           </div>
 
           <div class="order_inner" style="margin-left: 40px;">
-            <h3 class="date-time"><img class="date-time-btn" src="./../../assets/clock.svg"> : &nbsp;{{ order.time }}</h3>
+            <h3 class="date-time"><img class="date-time-btn" src="./../../assets/clock.svg">: &nbsp;{{ order.time }}</h3>
           </div>
 
           <div class="order_inner" style="margin-left: 40px;">
@@ -108,6 +108,11 @@
           <button class="form-button" style="background-color: #3CB371;" (click)="completeStatus()">Order Completed</button>
           <!--   -->
         </div>
+
+        <div class="buttons-div">
+          <button class="form-button" style="background-color: #6366ff;" (click)="goBack()">Back</button>
+          <!--   -->
+        </div>
       </div>
 
 
@@ -122,7 +127,7 @@
         <div class="form-container-2" style="width: 65%;">
           <div class="top-header">
             <h3 class="top-header-topic">Order Details</h3>
-            <img *ngIf="isEdit != true && noEditStatus != true" (click)="edit()" style="height: 20px; width: 20px; background-color: #93ffc4; margin-left: 20px;" src="../../assets/edit.svg">
+            <img *ngIf="isEdit != true && noEditStatus != true" (click)="edit()" style="height: 20px; width: 20px; background-color: #93ffc4; margin-left: 20px; cursor: pointer;" src="../../assets/edit.svg">
           </div>
 
           <div class="items" style="margin-top: 70px;">
@@ -200,6 +205,13 @@
         </div>
 
       </div>
+      <div *ngIf="postErrorUpdate" class="message-failure">
+        {{ postErrorMessageUpdate +'!'}}
+      </div>
+
+      <div *ngIf="postSuccessUpdate" class="message-success">
+        {{ postSuccessMessageUpdate +'!'}}
+      </div>
 
       <div class="form-container" style="margin-bottom: 100px;">
         <div class="top-header" style="background-color: #FFC7C9;">
@@ -221,6 +233,14 @@
         <div class="buttons-div">
           <button class="form-button" [ngClass]="{'disabled-reject': noEditStatus === true, 'form-button' : noEditStatus === false }" style="margin: 10px 0px; background-color: #E8565B ;" (click)="rejectStatus()">Reject</button>
         </div>
+      </div>
+
+      <div *ngIf="postErrorReject" class="message-failure">
+        {{ postErrorMessageReject +'!'}}
+      </div>
+
+      <div *ngIf="postSuccessReject" class="message-success">
+        {{ postSuccessMessageReject +'!'}}
       </div>
   </div>
 </div>

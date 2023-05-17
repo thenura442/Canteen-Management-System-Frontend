@@ -13,7 +13,8 @@
   height: fit-content;
   border-radius: 8px;
   width: 100%;
-  min-width: 750px;
+  min-width: 350px;
+  max-width: 700px;
   padding: 30px 30px 30px 30px;
   margin-bottom: 40px;
 }
@@ -71,7 +72,7 @@
 }
 
 .order_header {
-  width: fit-content;
+  width: 100%;
   min-width: 30%;
   height: 30px;
   text-align: left;
@@ -100,7 +101,7 @@
 
 .order_inner_right {
   display: flex;
-  width: 100%;
+  width: fit-content;
   margin-left: 15px;
   align-items: center;
   justify-content: right;
@@ -109,7 +110,7 @@
 
 .view-order {
   height: fit-content;
-  min-width: 200px;
+  min-width: 150px;
   display: flex;
   align-items: center;
   justify-content: right;

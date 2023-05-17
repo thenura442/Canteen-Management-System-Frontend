@@ -12,7 +12,17 @@
       </div>
     </div>
     <label for="file_input_id" class="edit-link">Edit Profile Picture</label>
-    <input type="file" id="file_input_id" (change)="selectImage($event)">
+    <input type="file" id="file_input_id" accept="image/png, image/jpg, image/jpeg" (change)="selectImage($event)">
+
+    <div style="display: flex; justify-content: center; height: fit-content; width: 100%;">
+      <div *ngIf="postErrorPicture" class="message-failure">
+        {{ postErrorMessagePicture +'!'}}
+      </div>
+
+      <div *ngIf="postSuccessPicture" class="message-success">
+        {{ postSuccessMessagePicture +'!'}}
+      </div>
+    </div>
 
     <h2 class="sub-header">User Details</h2>
 

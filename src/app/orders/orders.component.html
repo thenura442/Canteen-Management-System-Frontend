@@ -4,7 +4,6 @@
   <h1 class="header">Orders</h1>
 
   <div class="portion">
-
     <form class="search-form" action="">
       <input class="search" type="text" placeholder="Search Order" name="orderSearch" [(ngModel)]="searchedOrderId" >
       <button class="img-btn" type="submit"><img src="./../../assets/icon.svg">  </button>
@@ -18,10 +17,15 @@
       <button class="form-button" (click)="completed()" [class.active-form-button]="completedStatus === true">Completed</button>
     </div>
 
-      <app-orders-all *ngIf="allStatus == true" [orderId]="searchedOrderId"></app-orders-all>
-      <app-orders-pending *ngIf="pendingStatus == true" [orderId]="searchedOrderId"></app-orders-pending>
-      <app-orders-progress *ngIf="progressStatus == true" [orderId]="searchedOrderId"></app-orders-progress>
-      <app-orders-pick *ngIf="pickStatus == true" [orderId]="searchedOrderId"></app-orders-pick>
-      <app-orders-completed *ngIf="completedStatus == true" [orderId]="searchedOrderId"></app-orders-completed>
+    <div *ngIf="allStatus == true" style=" display: flex; flex-direction: column; justify-content: center; width: 100%; height: fit-content; padding-right: 10%; padding-left: 10%; ">
+      <app-orders-all style="height: fit-content;"  *ngIf="allStatus == true" [orderId]="searchedOrderId"></app-orders-all>
+    </div>
+    <div *ngIf="pendingStatus == true" style=" display: flex; flex-direction: column; justify-content :space-around; width: 100%; height: fit-content; ">
+      <app-orders-pending style="height: fit-content;" *ngIf="pendingStatus == true" [orderId]="searchedOrderId"></app-orders-pending>
+    </div>
+      <app-orders-progress style="height: fit-content;" *ngIf="progressStatus == true" [orderId]="searchedOrderId"></app-orders-progress>
+      <app-orders-pick style="height: fit-content;" *ngIf="pickStatus == true" [orderId]="searchedOrderId"></app-orders-pick>
+      <app-orders-completed style="height: fit-content;" *ngIf="completedStatus == true" [orderId]="searchedOrderId"></app-orders-completed>
+
   </div>
 </div>

@@ -36,7 +36,6 @@ export class ProfileHeaderComponent implements OnInit {
       if(dataSub.email != null || dataSub.email != undefined){
         this.userService.getLogged({email : dataSub.email}).subscribe((result : any) => {
           this.user = result;
-          console.log(this.user);
         })
       }
     })

@@ -16,10 +16,10 @@ export class ProfileComponent implements OnInit {
   path = "";
   isLoading = true;
 
-  postErrorFind = false;
-  postErrorMessageFind = "";
-  postSuccessFind = false;
-  postSuccessMessageFind = "";
+  postErrorPicture = false;
+  postErrorMessagePicture = "";
+  postSuccessPicture = false;
+  postSuccessMessagePicture = "";
 
   postSuccess = false;
   postSuccessMessage = "false";
@@ -51,7 +51,6 @@ export class ProfileComponent implements OnInit {
         this.userService.getLogged({email : dataSub.email}).subscribe((result : any) => {
           this.user = result;
           this.isLoading = false;
-          console.log(this.user);
         })
       }
     })
@@ -80,7 +79,6 @@ export class ProfileComponent implements OnInit {
       return;
     }
     this.userService.updatePass({email: this.user.email , old_password : this.pass.old_password , new_password : this.pass.new_password , retype_new_password : this.pass.retype_new_password}).subscribe((result: any) => {
-      console.log(result)
       if(Object.hasOwn(result,'Error')){
         const status = Object.getOwnPropertyDescriptor(result, 'Status');
         const error = Object.getOwnPropertyDescriptor(result, 'Error');
@@ -116,12 +114,17 @@ export class ProfileComponent implements OnInit {
       formData.append('url',this.image[0])
       try{
           this.uploadService.postFiles(formData).subscribe((result: any) => {
-          console.log(result.path);
-          console.log('hello')
           this.path = result.path;
-          this.userService.updatePicture({email : this.user.email, url : this.path}).subscribe((pic:any) => {
-            console.log(pic);
-            this.user.url = pic.url;
+          this.userService.updatePicture({email : this.user.email, url : this.path}).subscribe(async(pic:any) => {
+            this.user.url = await pic.url;
+            if(pic.url != undefined && pic.url != null && pic.url != ""){
+              this.postSuccessMessagePicture = "Profile Picture Updated Successfully!"
+              this.postSuccessPicture = true;
+            }
+            else {
+              this.postErrorMessagePicture = "Profile Picture Could not be Updated. Try Again Later!"
+              this.postErrorPicture = true;
+            }
           })
         })
       }
@@ -137,13 +140,12 @@ export class ProfileComponent implements OnInit {
     console.log('error : ',errorResponse);
     this.postError = true;
     this.postErrorMessage = errorResponse;
-    console.log(this.postErrorMessage)
   }
 
   messages(): void{
 
-    this.postErrorFind = false;
-    this.postSuccessFind = false;
+    this.postErrorPicture = false;
+    this.postSuccessPicture = false;
 
     this.postSuccess = false;
     this.postError = false;

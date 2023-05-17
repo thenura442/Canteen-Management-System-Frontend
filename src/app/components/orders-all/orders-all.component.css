@@ -72,7 +72,7 @@
 
 .order_header {
   width: fit-content;
-  min-width: 30%;
+  padding-right: 6px;
   height: 30px;
   text-align: left;
   font-family: 'DM Sans';
