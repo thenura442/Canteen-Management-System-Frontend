@@ -1,28 +1,29 @@
 <app-spinner-top *ngIf="isLoading"></app-spinner-top>
-<div class="form-container" [routerLink]="['/orders', order.id]" *ngFor="let order of pickArray | orderfilter:orderId">
-  <div class="order_inner">
-    <h2 class="order_header">{{order.store_name}}</h2>
-    <div class="order_inner_right"><a class="view-order"><img class="img-right" src="./../../assets/Icon button.svg">View Order</a></div>
-  </div>
+<div class="order-container">
+  <div class="form-container" style="width: 46%; margin-left: 35px;" [routerLink]="['/orders', order.id]" *ngFor="let order of pickArray | orderfilter:orderId">
+    <div class="order_inner">
+      <h2 class="order_header">{{order.store_name}}</h2>
+      <div class="order_inner_right"><a class="view-order"><img class="img-right" src="./../../assets/Icon button.svg">View Order</a></div>
+    </div>
 
 
-  <div class="order_inner">
-    <h3 class="order_normal">Order No : &nbsp;{{ order.id }}</h3>
-  <p class="color_point pick"></p>
-  <span class="status">{{order.status | titlecase}}</span>
-  </div>
+    <div class="order_inner">
+      <h3 class="order_normal">Order No : &nbsp;{{ order.id }}</h3>
+    <p class="color_point pick"></p>
+    <span class="status">{{order.status | titlecase}}</span>
+    </div>
 
-  <div class="order_inner">
-    <h3 class="order_normal">Customer : &nbsp;{{order.customer_name}}</h3>
-  </div>
+    <div class="order_inner">
+      <h3 class="order_normal">Customer : &nbsp;{{order.customer_name}}</h3>
+    </div>
 
-  <div class="order_inner">
-    <h3 class="order_normal"><img class="date-time-btn" src="./../../assets/calendar.svg"> : &nbsp;{{ order.date }}</h3>
-  </div>
+    <div class="order_inner">
+      <h3 class="order_normal" style="width: 100%;"><img class="date-time-btn" src="./../../assets/calendar.svg"> : &nbsp;{{ order.date }}</h3>
+    </div>
 
-  <div class="order_inner">
-    <h3 class="order_normal"><img class="date-time-btn" src="./../../assets/clock.svg"> : &nbsp;{{ order.time }}</h3>
-    <div class="order_inner_right"><img class="order-arrow" src="./../../assets/arrow.svg"></div>
+    <div class="order_inner">
+      <h3 class="order_normal" style="width: 100%;"><img class="date-time-btn" src="./../../assets/clock.svg"> : &nbsp;{{ order.time }}</h3>
+    </div>
   </div>
 </div>
 

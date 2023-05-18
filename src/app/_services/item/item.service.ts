@@ -17,6 +17,10 @@ export class ItemService {
     return this.http.post(URL+PATH+'get', body);
   }
 
+  findAllItems(body: any) : any {
+    return this.http.post(URL+PATH+'get/vendor', body);
+  }
+
   postItemForm(itemSettings: Item) : Observable<Item> {
     return this.http.post<Item>(URL+PATH+'register',itemSettings);
   }

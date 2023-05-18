@@ -107,7 +107,7 @@
                     <td><img style="width: 80px; height: auto;" [src]="item.url"></td>
                   </div>
                 </div>
-                <div style="display: flex; flex-direction: row; height: fit-content; justify-content: space-between; width: 40%;">
+                <div style="display: flex; flex-direction: row; height: fit-content; justify-content: space-between; width: 30%;">
                   <div style="width: 50%; text-align: left; height: 100%;">
                     <td name="text">{{item.id}}</td>
                   </div>
@@ -115,12 +115,15 @@
                     <td>{{item.item_name | titlecase}}</td>
                   </div>
                 </div>
-                <div style="display: flex; flex-direction: row; justify-content: space-between; width: 45%;">
+                <div style="display: flex; flex-direction: row; justify-content: space-between; width: 55%;">
                   <div style="width: 50%; text-align: left;">
                     <td name="text">{{item.meal_type | titlecase}}</td>
                   </div>
                   <div style="width: 50%; text-align: left;">
                     <td name="text">LKR {{item.price}}</td>
+                  </div>
+                  <div style="width: 50%; text-align: left;">
+                    <td name="text">{{item.availability | titlecase}}</td>
                   </div>
                   <div style="width: 50%; text-align: left;">
                     <td><h5 style="color : blue; cursor: pointer;"

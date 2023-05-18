@@ -15,15 +15,6 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService , private router : Router){}
 
   ngOnInit(){
-    // this.authService.logOut().subscribe((result) => {
-    //   console.log(result);
-    //   if(Object.hasOwn(result,'Error')){
-    //     console.log(result);
-    //   }
-    //   else {
-    //     console.log(result);
-    //   }
-    // });
   }
 
 

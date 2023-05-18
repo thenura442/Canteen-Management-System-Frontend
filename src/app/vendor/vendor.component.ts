@@ -121,9 +121,7 @@ export class VendorComponent implements OnInit {
     console.log(this.vendorForm);
     if(form.valid){
       this.messages();
-      console.log(this.vendorForm);
       this.vendorService.updateVendor(this.vendorForm).subscribe((result) => {
-        console.log(result);
         if (Object.hasOwn(result, 'Error')) {
           const status = Object.getOwnPropertyDescriptor(result, 'Status');
           const error = Object.getOwnPropertyDescriptor(result, 'Error');
@@ -133,7 +131,6 @@ export class VendorComponent implements OnInit {
           }
           else {
             this.onHttpError("Something went Wrong with the Server try again later,.. If the Issue Persists please Contact Support!");
-            console.log(result);
           }
         }
         else {

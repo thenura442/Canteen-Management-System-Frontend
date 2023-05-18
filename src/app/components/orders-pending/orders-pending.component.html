@@ -1,5 +1,5 @@
 <app-spinner-top *ngIf="isLoading"></app-spinner-top>
-<div style="display: flex; flex-direction: row; flex-wrap: wrap; height: fit-content;">
+<div class="order-container">
   <div class="form-container" style="width: 46%; margin-left: 35px;" [routerLink]="['/orders', order.id]" *ngFor="let order of pendingArray | orderfilter:orderId">
     <div class="order_inner">
       <h2 class="order_header">{{order.store_name}}</h2>

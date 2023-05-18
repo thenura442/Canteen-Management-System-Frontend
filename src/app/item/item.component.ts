@@ -4,6 +4,7 @@ import { Item } from '../_interfaces/item';
 import { UploadService } from '../_services/upload/upload.service';
 import { NgForm } from '@angular/forms';
 import { VendorService } from '../_services/vendor/vendor.service';
+import { AuthService } from '../_services/auth/auth.service';
 
 @Component({
   selector: 'app-item',
@@ -12,7 +13,7 @@ import { VendorService } from '../_services/vendor/vendor.service';
 })
 export class ItemComponent implements OnInit{
 
-  constructor( private vendorService : VendorService , private itemService: ItemService, private uploadService: UploadService){}
+  constructor( private vendorService : VendorService , private itemService: ItemService, private uploadService: UploadService , private authService : AuthService){}
 
   postErrorFind = false;
   postErrorMessageFind = "";
@@ -41,6 +42,8 @@ export class ItemComponent implements OnInit{
     availability: ""
   }
 
+
+  vendorEmail = ""
   vendorForm : any = []
   itemForm :Item = {...this.orginalItemForm}
 
@@ -78,7 +81,7 @@ export class ItemComponent implements OnInit{
         else {
           this.postError = false;
           this.postSuccess = true;
-          this.postSuccessMessage = result.id + "- Successfully Registered";
+          this.postSuccessMessage = "Item Successfully Registered";
           this.itemForm = this.orginalItemForm;
           this.image = this.originalImage;
         }
@@ -223,14 +226,22 @@ export class ItemComponent implements OnInit{
       console.log(vendors)
     })
 
-    this.itemService.findItems({email : "streetstore@gmail.com"}).subscribe((result : any ) => {
+    let vendor = ""
+    this.authService.currentData.subscribe((data : any) => {
+      vendor = data.vendor
+      this.vendorEmail = data.vendor
+    })
+
+    this.itemService.findAllItems({email : vendor}).subscribe((result : any ) => {
       this.items = result;
-      //console.log(result)
     })
   }
 
   seeForm(){
     this.see_form = !this.see_form;
+    this.itemService.findAllItems({email : this.vendorEmail}).subscribe(async(result : any ) => {
+      this.items = await result;
+    })
   }
 
   onClipboardCopy(success : boolean) : void {

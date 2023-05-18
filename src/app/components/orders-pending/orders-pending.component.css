@@ -140,3 +140,10 @@
   height: 18px;
   width: auto;
 }
+
+.order-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: fit-content;
+}
