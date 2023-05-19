@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Item } from 'src/app/_interfaces/item';
 
-const URL = 'http://localhost:5500/';
+const URL = 'https://cms-backend-d9n7.onrender.com/';
 const PATH = 'api/item/';
 
 @Injectable({
