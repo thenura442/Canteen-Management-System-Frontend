@@ -29,6 +29,9 @@ import { ProfileHeaderComponent } from './components/profile-header/profile-head
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SpinnerTopComponent } from './components/spinner-top/spinner-top.component';
 import { NoOrdersComponent } from './components/no-orders/no-orders.component';
+import { BlockComponent } from './components/block/block.component';
+import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +57,9 @@ import { NoOrdersComponent } from './components/no-orders/no-orders.component';
     SpinnerComponent,
     SpinnerTopComponent,
     NoOrdersComponent,
+    BlockComponent,
+    UnauthorizedComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

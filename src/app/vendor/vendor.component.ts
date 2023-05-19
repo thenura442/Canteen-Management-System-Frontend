@@ -38,7 +38,8 @@ export class VendorComponent implements OnInit {
     description: "",
     url: "https://canteen-management-system-nsbm.s3.ap-south-1.amazonaws.com/",
     mobile_no: "",
-    access: ""
+    access: "",
+    merchant_id : "",
   };
 
   vendorForm: Vendor = {...this.originalVendorForm}

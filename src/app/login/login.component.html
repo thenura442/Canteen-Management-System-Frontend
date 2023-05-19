@@ -2,7 +2,7 @@
   <div class="image-container">
     <img src="./../../assets/login-screen.png">
   </div>
-  <div class="login-container">
+  <div class="login-container" *ngIf="login">
     <div class="logo-container">
       <img src="./../../assets/logo-white.png">
     </div>
@@ -13,7 +13,7 @@
       <form #form ="ngForm" (ngSubmit)="onSubmit(form)">
         <input class="form-input" name='email' type="text"placeholder="Enter Email" required [(ngModel)]="loginForm.email">
 
-        <input class="form-input" name='password' type="password" placeholder="Enter Password" required [(ngModel)]="loginForm.password">
+        <input class="form-input" name='password' autocomplete="new-password" type="password" placeholder="Enter Password" required [(ngModel)]="loginForm.password">
 
         <div class="buttons-div">
           <button class="form-button">LOGIN</button>
@@ -21,7 +21,37 @@
       </form>
 
       <div class="link" style="margin-bottom: 50px;">
-        <a href="#">Forgot Your Password?</a>
+        <a (click)="loginToggle()">Forgot Password?</a>
+      </div>
+    </div>
+
+    <div *ngIf="postError" [hidden]="postError" style="width: 60%; font-size: 18px; padding: 30px; display: flex; align-items: center; background-color: #f8d7da; height: fit-content; justify-content: center; border: 1px solid #f8d7da; border-radius: 10px;">
+    <!-- <div  *ngIf="postError" [hidden]="postError" style="margin: 10px 0px 20px 0px; width: 40%; font-size: 18px; padding: 30px; display: flex; align-items: center; background-color: #f8d7da; height: fit-content; justify-content: center; border: 1px solid #f8d7da; border-radius: 10px; overflow-wrap: anywhere;"></div> -->
+      {{ postErrorMessage +'!'}}
+    </div>
+  </div>
+
+  <div class="login-container" *ngIf="!login">
+    <div class="logo-container">
+      <img src="./../../assets/logo-white.png">
+    </div>
+    <div class="h1-div">
+      <h1 class="h1">Welcome Back!</h1>
+    </div>
+    <div class="form-container">
+      <div class="h1-div">
+        <h4 class="h2">Enter your Associated Email! We will send an email to that Account if it Exists within our System</h4>
+      </div>
+      <form #form ="ngForm" (ngSubmit)="onSendEmail(form)">
+        <input class="form-input" name='email' type="text"placeholder="Enter Associated Email" required [(ngModel)]="loginForm.email">
+
+        <div class="buttons-div">
+          <button class="form-button">Send Email</button>
+        </div>
+      </form>
+
+      <div class="link" style="margin-bottom: 50px;">
+        <a (click)="loginToggle()">Back to Login</a>
       </div>
     </div>
 

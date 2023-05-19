@@ -63,7 +63,8 @@ export class OrderPageComponent {
     description: "",
     url: "",
     mobile_no: "",
-    access: ""
+    access: "",
+    merchant_id: ""
   }
 
   vendor: Vendor = {...this.orginalVendor}

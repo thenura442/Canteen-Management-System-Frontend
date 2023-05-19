@@ -57,6 +57,16 @@ img{
   height: fit-content;
 }
 
+.h2 {
+  height: fit-content;
+  font-weight: 500;
+  font-size: 17px;
+  text-align: center;
+  color: rgb(54, 54, 54);
+  margin-bottom: 40px;
+}
+
+
 
 /* LOGIN FORM */
 

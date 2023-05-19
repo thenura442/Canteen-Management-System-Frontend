@@ -24,6 +24,8 @@ export class LoginComponent implements OnInit {
     type: "staff"
   };
 
+  login = true;
+
   loginForm: LoginUser = {...this.originalLoginForm}
 
   postError = false;
@@ -35,6 +37,10 @@ export class LoginComponent implements OnInit {
     this.postError = true;
     this.postErrorMessage = errorResponse;
     console.log(this.postErrorMessage)
+  }
+
+  loginToggle(){
+    this.login = !this.login;
   }
 
 
@@ -66,5 +72,9 @@ export class LoginComponent implements OnInit {
     else{
       this.onHttpError("Please Enter all Required Fields with Valid Values");
     }
+  }
+
+  onSendEmail(form : NgForm): void {
+
   }
 }

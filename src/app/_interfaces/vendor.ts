@@ -5,4 +5,5 @@ export interface Vendor {
   url: any,
   mobile_no: String,
   access: String
+  merchant_id: String
 }

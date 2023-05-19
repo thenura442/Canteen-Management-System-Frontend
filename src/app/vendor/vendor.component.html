@@ -27,6 +27,9 @@
           <input class="form-input" *ngIf="!updateTrue" style="margin-left: 76px;" name="vendor-email" type="text" placeholder="Enter Vendor Email" required [(ngModel)]="vendorForm.email">
           <input class="form-input" *ngIf="updateTrue" readonly style="margin-left: 76px;" name="vendor-email" type="text" placeholder="Enter Vendor Email" required [(ngModel)]="vendorForm.email"><br>
 
+          <label class="form-label" for="id">Merchant ID:</label>
+          <input class="form-input"  style="margin-left: 32px;" name="vendor-email" type="text" placeholder="Enter Merchant ID" required [(ngModel)]="vendorForm.merchant_id"><br>
+
           <label class="form-label" for="id">Picture:</label>
           <input class="form-input-file" style="margin-left: 68px;" name="url" type="file" id="fileUpload" (change)="selectImage($event)">
 
