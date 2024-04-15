@@ -42,17 +42,17 @@ The University Canteen Management System is a comprehensive solution designed to
 
 ## Features
 
-### Web Application (Admin Interface):
+### Web Application (Admin Interface)
 
 - An admin web portal developed using the MEAN (MongoDB, Express.js, Angular, Node.js) stack, providing administrative functionalities for managing stores, staff, and orders.
 - Admins can add, view, update, and remove stores and store owners, as well as monitor and manage staff members.
 
-### Staff Portal:
+### Staff Portal
 
 - A web-based interface for staff members to manage inventory, update menu items, process orders, and track order statuses.
 - Staff can accept or reject orders, update order statuses, and manage special food items.
 
-### Owner Dashboard:
+### Owner Dashboard
 
 - An owner dashboard allowing store owners to oversee their store operations, manage staff members, and monitor order processing.
 - Owners have access to the same functionalities as staff members, with additional capabilities for staff management.
