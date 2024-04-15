@@ -1,27 +1,67 @@
-# WebFrontend
+# Canteen Management System Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.4.
+The University Canteen Management System is a comprehensive solution designed to streamline and modernize the operations of university canteens. This project aims to provide an efficient, accessible, and user-friendly platform for both customers and staff members involved in the university's canteen ecosystem.
 
-## Development server
+## Table of Contents
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+1. [Installation](#installation)
+2. [Technologies Used](#technologies-used)
+3. [Features](#features)
+4. [Contributing](#contributing)
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Installation
 
-## Build
+- Clone the repository to a designated location on your device.
+- Open the project.
+- Run npm i to install required dependancies
+- Clone the backend as well and run npm i ([Canteen Management System Backend](https://github.com/thenura442/Canteen-Management-System-Backend/))
+- Once both repositories are running you should now be able to run the project without any issues.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+## Technologies Used
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+#### Languages
 
-## Running end-to-end tests
+- Html/Css - (Used for user interface development)
+- Typescript - (Used for application logic)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+#### Frameworks
 
-## Further help
+- Angular
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+#### Third Party API and Utils
+
+- AWS S3 Bucket
+- Token-based Authentication
+
+
+#### Database
+
+- MongoDB (Used for storing and managing application data)
+
+## Features
+
+### Web Application (Admin Interface):
+
+- An admin web portal developed using the MEAN (MongoDB, Express.js, Angular, Node.js) stack, providing administrative functionalities for managing stores, staff, and orders.
+- Admins can add, view, update, and remove stores and store owners, as well as monitor and manage staff members.
+
+### Staff Portal:
+
+- A web-based interface for staff members to manage inventory, update menu items, process orders, and track order statuses.
+- Staff can accept or reject orders, update order statuses, and manage special food items.
+
+### Owner Dashboard:
+
+- An owner dashboard allowing store owners to oversee their store operations, manage staff members, and monitor order processing.
+- Owners have access to the same functionalities as staff members, with additional capabilities for staff management.
+
+
+## Contributing
+
+- Fork the project.
+- Create your feature branch (git checkout -b feature/your-feature).
+- Commit your changes (git commit -am 'Add some feature').
+- Push to the branch (git push origin feature/your-feature).
+- Create a new Pull Request.
